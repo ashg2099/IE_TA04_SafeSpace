@@ -7,20 +7,22 @@ import HeaderNav from '../components/HeaderNav.vue'
   <main>
     <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-white">
       <div class="row align-items-center">
-        <div class="col-lg-6 px-0">
-          <h1 class="display-4">Welcome to Safe Space for Women</h1>
-          <p class="lead my-3">This website is dedicated to providing resources, support, and a secure community for
-            women. Our mission is to create a safe environment where women can connect, learn, and share experiences
-            without judgment.</p>
-          <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Learn more about us...</a></p>
+        <div class="col-lg-6">
+          <h1 class="display-4">Welcome to Safe-Space</h1>
+          <p class="lead my-3">
+            Have you ever felt scared or worried about experiencing street harassment, sexual harassment, or stalking in
+            Melbourne?
+            Safe-Space is dedicated to boost the mobility and confidence of women in public areas.
+            We equip women with the information they need to make safer choices in
+            their daily lives.
+            Let us help slience your fears in the Melbourne street by our insights and supports.
+          </p>
         </div>
         <!-- change-to-real-picture -->
         <div class="col-lg-6">
-          <svg class="bd-placeholder-img img-fluid rounded" width="100%" height="400" xmlns="http://www.w3.org/2000/svg"
-            role="img" aria-label="Welcome image" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Welcome image</title>
-            <rect width="100%" height="100%" fill="#7952b3" />
-            <text x="50%" y="50%" fill="#fff" text-anchor="middle" dominant-baseline="middle">Welcome Image</text>
+          <svg aria-label="Welcome image" class="img-fluid rounded" width="100%" height="800"
+            preserveAspectRatio="xMidYMid slice" focusable="false">
+            <image href="@/assets/worried.jpg" width="100%" height="100%" />
           </svg>
         </div>
       </div>
@@ -85,7 +87,6 @@ import HeaderNav from '../components/HeaderNav.vue'
         </div>
       </div>
 
-      <!-- 功能块4 -->
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
         <div class="col-md-4">
           <svg class="bd-placeholder-img img-fluid" width="100%" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +106,6 @@ import HeaderNav from '../components/HeaderNav.vue'
       </div>
     </div>
 
-    <!-- 最近文章区域（保留或根据需要可以移除） -->
     <div class="container mb-5">
       <h4 class="fst-italic mb-3">Recent Articles</h4>
       <ul class="list-unstyled">
