@@ -1,13 +1,13 @@
-from flask import Flask, jsonify, Response
+from flask import Flask, jsonify, Response,request
 from flask_sqlalchemy import SQLAlchemy
-from visualisations import generate_aggregated_map
+from visualisations import generate_aggregated_map, get_insights_text
 from visualisations import generate_trend_chart
 from visualisations import fetch_trend_data, create_summary_table, create_plotly_table
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Configure the PostgreSQL connection (update credentials as needed)
+# Configure the PostgreSQL connection
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:MonAsh%40201199@localhost:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -87,9 +87,17 @@ def get_crime_stats():
 # Endpoint to serve the aggregated crime map visualization
 @app.route('/api/aggregated_map', methods=['GET'])
 def aggregated_map():
-    map_object = generate_aggregated_map(db, CrimeStatYearly)
+    selected_year = request.args.get('year', default=2015, type=int)
+    map_object = generate_aggregated_map(db, CrimeStatYearly, year=selected_year)
     html_str = map_object.get_root().render()
     return Response(html_str, mimetype='text/html')
+
+# Endpoint to fetch dynamic textual insights for the selected year.
+@app.route('/api/insights', methods=['GET'])
+def insights():
+    selected_year = request.args.get('year', default=2015, type=int)
+    insight_html = get_insights_text(db, CrimeStatYearly, year=selected_year)
+    return Response(insight_html, mimetype='text/html')
 
 # Endpoint to get trend chart visualization
 @app.route('/api/trend_chart', methods=['GET'])
@@ -104,7 +112,6 @@ def trend_table():
     table_fig = create_plotly_table(summary_df)
     html_str = table_fig.to_html(full_html=False)
     return Response(html_str, mimetype='text/html')
-
 
 if __name__ == '__main__':
     with app.app_context():
