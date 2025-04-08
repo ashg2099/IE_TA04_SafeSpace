@@ -145,13 +145,18 @@ def get_insights_text(db, CrimeStatYearly, year=2015):
     """
     return insight_text
 
-def generate_trend_chart(db, VictimsByGenderYearly):
-
+def generate_trend_chart(db, VictimsByGenderYearly, start_year, end_year):
+    
     results = db.session.query(
         VictimsByGenderYearly.year,
         VictimsByGenderYearly.sex,
         func.sum(VictimsByGenderYearly.victims).label('total_victims')
-    ).group_by(VictimsByGenderYearly.year, VictimsByGenderYearly.sex).order_by(VictimsByGenderYearly.year).all()
+    ).filter(
+        VictimsByGenderYearly.year >= start_year,
+        VictimsByGenderYearly.year <= end_year
+    ).group_by(
+        VictimsByGenderYearly.year, VictimsByGenderYearly.sex
+    ).order_by(VictimsByGenderYearly.year).all()
 
     df = pd.DataFrame(results, columns=['year', 'sex', 'total_victims'])
 
@@ -169,6 +174,9 @@ def generate_trend_chart(db, VictimsByGenderYearly):
     overall_results = db.session.query(
         VictimsByGenderYearly.year,
         func.sum(VictimsByGenderYearly.victims).label('overall_victims')
+    ).filter(
+        VictimsByGenderYearly.year >= start_year,
+        VictimsByGenderYearly.year <= end_year
     ).group_by(VictimsByGenderYearly.year).order_by(VictimsByGenderYearly.year).all()
 
     df_overall = pd.DataFrame(overall_results, columns=['year', 'overall_victims'])
@@ -186,22 +194,13 @@ def generate_trend_chart(db, VictimsByGenderYearly):
         plot_bgcolor='white',
         paper_bgcolor='white',
         legend=dict(
-            title=dict(text='Legend (click to hide/show lines)'),
-            orientation='v',    
-            x=1.02,             
-            xanchor='left',    
-            y=1,                
+            title=dict(text='Legend (click to show/hide lines)'),
+            orientation='v',
+            x=1.02,
+            xanchor='left',
+            y=1,
             yanchor='top'
         )
-    )
-
-    # Update axes to display the axis lines explicitly
-    fig.update_xaxes(
-        showgrid=False,
-        showline=True,
-        linewidth=1,
-        linecolor='black',
-        mirror=True
     )
     fig.update_yaxes(
         showgrid=False,
@@ -210,27 +209,60 @@ def generate_trend_chart(db, VictimsByGenderYearly):
         linecolor='black',
         mirror=True
     )
+    
+    fig.update_xaxes(
+        showgrid=False,
+        showline=True,
+        linewidth=1,
+        linecolor='black',
+        mirror=True,
+        tickmode='linear',
+        dtick=1
+    )
 
     return fig.to_html(full_html=False)
 
-def fetch_trend_data(db, VictimsByGenderYearly):
+def get_trend_insights_text(db, VictimsByGenderYearly, start_year, end_year):
+
+    insight_text = (
+            f'<p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5;">'
+            f"Between <strong>{start_year}</strong> and <strong>{end_year}</strong>, the chart shows a steadily increasing total number of "
+            "<strong>victims</strong> (indicated by the <strong>dashed line</strong>), which underscores that these issues are not diminishing over time. "
+            "A clear <strong>gender disparity</strong> is evident as the <strong>female victim line</strong> consistently exceeds the <strong>male line</strong>, "
+            "highlighting that women remain disproportionately affected by violence year after year. Although <strong>male victim counts</strong> edge upward as well, "
+            "the persistent gap suggests that current measures may not adequately address the <strong>safety needs</strong> of women. "
+            "These trends emphasize the urgent need for ongoing research, targeted interventions, and inclusive policies to improve safety in public spaces."
+            '</p>'
+        )
+    return insight_text
+
+def fetch_trend_data(db, VictimsByGenderYearly, start_year, end_year):
+
     results = db.session.query(
         VictimsByGenderYearly.year,
         VictimsByGenderYearly.sex,
         func.sum(VictimsByGenderYearly.victims).label('total_victims')
-    ).group_by(VictimsByGenderYearly.year, VictimsByGenderYearly.sex)\
-     .order_by(VictimsByGenderYearly.year).all()
+    ).filter(
+        VictimsByGenderYearly.year >= start_year,
+        VictimsByGenderYearly.year <= end_year
+    ).group_by(
+        VictimsByGenderYearly.year, VictimsByGenderYearly.sex
+    ).order_by(VictimsByGenderYearly.year).all()
     
     df_gender = pd.DataFrame(results, columns=['year', 'sex', 'total_victims'])
     
     overall_results = db.session.query(
         VictimsByGenderYearly.year,
         func.sum(VictimsByGenderYearly.victims).label('overall_victims')
+    ).filter(
+        VictimsByGenderYearly.year >= start_year,
+        VictimsByGenderYearly.year <= end_year
     ).group_by(VictimsByGenderYearly.year).order_by(VictimsByGenderYearly.year).all()
     
     df_overall = pd.DataFrame(overall_results, columns=['year', 'overall_victims'])
     
     return df_gender, df_overall
+
 
 def create_summary_table(df_gender, df_overall):
     

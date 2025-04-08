@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, Response,request
 from flask_sqlalchemy import SQLAlchemy
 from visualisations import generate_aggregated_map, get_insights_text
-from visualisations import generate_trend_chart
+from visualisations import generate_trend_chart, get_trend_insights_text
 from visualisations import fetch_trend_data, create_summary_table, create_plotly_table
 from datetime import datetime
 
@@ -102,12 +102,23 @@ def insights():
 # Endpoint to get trend chart visualization
 @app.route('/api/trend_chart', methods=['GET'])
 def trend_chart():
-    html_str = generate_trend_chart(db, VictimsByGenderYearly)
+    start_year = request.args.get('start_year', default=2015, type=int)
+    end_year = request.args.get('end_year', default=2024, type=int)
+    html_str = generate_trend_chart(db, VictimsByGenderYearly, start_year, end_year)
     return Response(html_str, mimetype='text/html')
+
+@app.route('/api/trend_insights', methods=['GET'])
+def trend_insights():
+    start_year = request.args.get('start_year', default=2015, type=int)
+    end_year = request.args.get('end_year', default=2024, type=int)
+    insight_html = get_trend_insights_text(db, VictimsByGenderYearly, start_year, end_year)
+    return Response(insight_html, mimetype='text/html')
 
 @app.route('/api/trend_table', methods=['GET'])
 def trend_table():
-    df_gender, df_overall = fetch_trend_data(db, VictimsByGenderYearly)
+    start_year = request.args.get('start_year', default=2015, type=int)
+    end_year = request.args.get('end_year', default=2024, type=int)
+    df_gender, df_overall = fetch_trend_data(db, VictimsByGenderYearly, start_year, end_year)
     summary_df = create_summary_table(df_gender, df_overall)
     table_fig = create_plotly_table(summary_df)
     html_str = table_fig.to_html(full_html=False)
