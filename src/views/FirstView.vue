@@ -5,9 +5,9 @@ import HeaderNav from '../components/HeaderNav.vue'
 <template>
   <HeaderNav></HeaderNav>
   <main>
-    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-black border border-white">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-Secondry border border-white">
       <div class="row align-items-center">
-        <div class="col-lg-6 text-white">
+        <div class="col-lg-6">
           <h1 class="display-5 fw-bold">Feeling unsafe in cities...</h1>
           <p class="lead my-3 fs-3">
             Have you ever felt scared or worried about experiencing street harassment, sexual harassment, or stalking in
@@ -15,23 +15,24 @@ import HeaderNav from '../components/HeaderNav.vue'
           </p>
         </div>
         <!-- change-to-real-picture -->
-        <div class="col-lg-6">
-          <svg aria-label="Welcome image" width="100%" height="800" preserveAspectRatio="xMidYMid slice"
-            focusable="false">
-            <image href="@/assets/worried.jpg" class="img-fluid rounded" width="100%" height="100%" />
-          </svg>
+        <div class="col-lg-6 text-end">
+          <!-- <svg aria-label="Welcome image" xmlns="http://www.w3.org/2000/svg" role="img" width="100%" height="600"
+            preserveAspectRatio="xMidYMid slice" focusable="false">
+            <image href="@/assets/sad.svg" class="img-fluid rounded" width="100%" height="100%" /> -->
+          <img src="@/assets/sad.svg" class="img-fluid rounded" alt="Welcome image1">
+          <!-- </svg> -->
         </div>
       </div>
     </div>
 
-    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-white text-end border border-dark">
+    <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-warning text-end">
       <div class="row align-items-center">
         <!-- change-to-real-picture -->
-        <div class="col-lg-6">
-          <svg aria-label="Welcome image" width="100%" height="800" preserveAspectRatio="xMidYMid slice"
-            focusable="false">
-            <image href="@/assets/women-crowded.jpg" class="img-fluid rounded" width="100%" height="100%" />
-          </svg>
+        <div class="col-lg-6 text-start">
+          <!-- <svg aria-label="Welcome image" width="100%" height="800" preserveAspectRatio="xMidYMid slice"
+            focusable="false"> -->
+          <img src="@/assets/group-happy.svg" class="img-fluid rounded" alt="Welcome image2" />
+          <!-- </svg> -->
         </div>
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold">Welcome to Safe-Place</h1>
@@ -60,7 +61,7 @@ import HeaderNav from '../components/HeaderNav.vue'
             safety gaps visible. </p>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-primary mt-2 btn-lg">Safety Visualisation Tool </a>
+      <a href="#" class="btn btn-warning mt-2 btn-lg">Safety Visualisation Tool </a>
 
       <div class="row mt-5 bg-success text-white align-items-center" style="height: 300px;">
         <div class="col-md-4">
