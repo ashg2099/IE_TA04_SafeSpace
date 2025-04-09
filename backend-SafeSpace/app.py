@@ -8,7 +8,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Configure the PostgreSQL connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:MonAsh%40201199@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:MonAsh_201199@safespace-db.ch8icuqwqyt9.ap-southeast-2.rds.amazonaws.com:5432/SafeSpaceDB'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 # Define the model for the crime statistics data
 class CrimeStatYearly(db.Model):
     __tablename__ = 'melb_crime_stat_yearly'
-    __table_args__ = {'schema': 'safespace_schema'}
+    __table_args__ = {'schema': 'safespace_ta04_schema'}
     
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
@@ -51,7 +51,7 @@ class CrimeStatYearly(db.Model):
 # Define the model for your victims data
 class VictimsByGenderYearly(db.Model):
     __tablename__ = 'aus_victims_by_gender_yearly'
-    __table_args__ = {'schema': 'safespace_schema'}
+    __table_args__ = {'schema': 'safespace_ta04_schema'}
     
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
