@@ -10,8 +10,6 @@
       Crimes against the person”</div>
   </div>
 
-
-
   <div class="row g-4">
     <div class="col-lg-8">
       <!-- Main map with shadow and rounded corners -->
