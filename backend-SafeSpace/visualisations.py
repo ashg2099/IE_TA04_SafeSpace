@@ -129,18 +129,9 @@ def get_insights_text(db, CrimeStatYearly, year=2015):
 
     insight_text = f"""
     <p style="font-family: Arial, sans-serif; font-size: 16px;">
-    In {year}, data shows that the suburb with the highest offence count was 
-    <strong>{highest_suburb}</strong> with <strong>{highest_offence}</strong> offences, while the suburb with the lowest count was 
-    <strong>{lowest_suburb}</strong> with <strong>{lowest_offence}</strong> offences. These insights reveal key local risk areas and can help you make informed decisions when planning your routes.
-    You can use these insights stay aware—areas with higher reported incidents may require extra caution. Remember, even in zones with lower numbers, remaining alert and informed helps protect your personal safety.
-    If you or someone you know experiences harassment or feels unsafe, help is 
-    available—24 hours a day, 7 days a week—through the Victorian Government's 
-    <strong>1800RESPECT</strong> service. You can 
-    <strong>call 1800 737 732</strong>, or 
-    <strong>text 0435 737 732</strong> 
-    to speak with someone today. 
-    Remember, staying informed about local safety data is just one part of protecting 
-    yourself—knowing where to turn for immediate support is equally important.
+    In <strong>{year}</strong>, 
+    <strong>{highest_suburb}</strong> had the highest offence count of <strong>{highest_offence}</strong>, while 
+    <strong>{lowest_suburb}</strong> had the lowest with <strong>{lowest_offence}</strong> reported offence.
     </p>
     """
     return insight_text
@@ -203,6 +194,8 @@ def generate_trend_chart(db, VictimsByGenderYearly, start_year, end_year):
         )
     )
     fig.update_yaxes(
+        title_font=dict(size=16, family="Arial Black", color="black"),
+        tickfont=dict(size=14, family="Arial Black", color="black"),
         showgrid=False,
         showline=True,
         linewidth=1,
@@ -211,6 +204,8 @@ def generate_trend_chart(db, VictimsByGenderYearly, start_year, end_year):
     )
     
     fig.update_xaxes(
+        title_font=dict(size=16, family="Arial Black", color="black"),
+        tickfont=dict(size=14, family="Arial Black", color="black"),
         showgrid=False,
         showline=True,
         linewidth=1,
