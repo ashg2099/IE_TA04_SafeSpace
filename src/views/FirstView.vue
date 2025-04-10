@@ -56,7 +56,7 @@ import { ref } from 'vue'
 import HomeFeatureCard from '@/components/HomeFeatureCard.vue'
 import datavis from '@/assets/data-vis.svg'
 import game from '@/assets/game.svg'
-import ScrollDown from '../components/Scrolldown.vue';
+import ScrollDown from '../components/ScrollDown.vue';
 
 interface FeatureCardType {
   id: number;

@@ -104,7 +104,7 @@
 import { ref } from 'vue';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 import MaporTextFrame from '../components/F1Frames.vue';
-import ScrollDown from '../components/Scrolldown.vue';
+import ScrollDown from '../components/ScrollDown.vue';
 
 const selectedYear = ref(2015);
 const availableYears = ref([2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);

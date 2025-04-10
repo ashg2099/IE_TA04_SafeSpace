@@ -16,7 +16,7 @@ const props = defineProps({
   }
 });
 
-const mapContainer = ref(null);
+const mapContainer = ref<HTMLElement | null>(null);
 let iframeElement: HTMLIFrameElement | null = null;
 
 onMounted(() => {
