@@ -12,7 +12,7 @@
         </div>
 
         <div class="mt-4">
-          <button class="btn btn-light btn-lg px-4">{{ buttonText }}</button>
+          <button class="btn btn-light btn-lg px-4" @click="navigateToPage">{{ buttonText }}</button>
         </div>
       </div>
     </div>
@@ -20,10 +20,17 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 interface CardProps {
   imageUrl: string;
   title: string;
   buttonText: string;
+  routePath: string;
 }
 const props = defineProps<CardProps>();
+const router = useRouter();
+
+const navigateToPage = () => {
+  router.push(props.routePath);
+};
 </script>

@@ -1,15 +1,16 @@
 <template>
-  <HeaderNav></HeaderNav>
   <main>
     <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-light">
       <div class="row align-items-center">
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold">Have you ever felt unsafe in the cities?</h1>
           <p class="lead my-3 fs-3">
-            Hey, it’s more than normal than you think<br>
-            – Actually, only 50% of Australian women feel safe walking alone at night, according to the OECD Better Life
+            Hey, it's more than normal than you think<br>
+            - Actually, only 50% of Australian women feel safe walking alone at night, according to the OECD Better Life
             Index
           </p>
+          <ScrollDown targetId="additional-content" text="Discover more statistics" buttonClass="btn-dark"
+            iconClass="bi bi-arrow-bar-down" additionalClass="mt-5" />
         </div>
         <div class="col-lg-6 text-end">
           <img src="@/assets/sad.svg" class="img-fluid rounded" alt="Welcome image1">
@@ -39,31 +40,30 @@
     <div class="p-3 mb-4">
       <h1 class="mb-4 display-5 fw-bold">What we can do for you?</h1>
 
-      <div class="row bg-light">
-        <FeatureCard v-for="card in featureCards" :key="card.id" :image-url="card.imageUrl" :title="card.title"
-          :button-text="card.buttonText">
+      <div class="row bg-light" id="additional-content">
+        <HomeFeatureCard v-for="card in featureCards" :key="card.id" :image-url="card.imageUrl" :title="card.title"
+          :button-text="card.buttonText" :route-path="card.routePath">
           <h3> {{ card.title }}</h3>
-        </FeatureCard>
+        </HomeFeatureCard>
       </div>
     </div>
-
-
   </main>
 
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import HeaderNav from '../components/HeaderNav.vue'
-import FeatureCard from '@/components/FeatureCard.vue'
+import HomeFeatureCard from '@/components/HomeFeatureCard.vue'
 import datavis from '@/assets/data-vis.svg'
 import game from '@/assets/game.svg'
+import ScrollDown from '../components/Scrolldown.vue';
 
 interface FeatureCardType {
   id: number;
   imageUrl: string;
   title: string;
   buttonText: string;
+  routePath: string;
 }
 
 
@@ -72,14 +72,18 @@ const featureCards = ref<FeatureCardType[]>([
     id: 1,
     imageUrl: datavis,
     title: 'Want to know what happened in Melbourne last few years?',
-    buttonText: 'See real crime stat'
+    buttonText: 'See real crime stat',
+    routePath: '/real-crime-stat'
   },
   {
     id: 2,
     imageUrl: game,
     title: 'Want to know if you can survive under different scenarios. Learn best practices through play.',
-    buttonText: 'Try the safety challenge'
+    buttonText: 'Try the safety challenge',
+    routePath: '#'
   }
 ])
 
 </script>
+
+<style></style>

@@ -1,13 +1,17 @@
 <template>
-  <div class="row my-4">
-    <h2>Melbourne Offences Count by Suburb - Year {{ selectedYear }}</h2>
+  <div class="d-flex justify-content-between align-items-end mb-2">
+    <h2>Melbourne Offences Count by Suburb - Year {{ selectedYear }}
+      <br>
+      <p class="h5">The Offences Count represents the number of recorded offences under offence
+        division “A
+        Crimes against the person”</p>
+    </h2>
+    <ScrollDown targetId="end" text="See more" buttonClass="btn-dark" iconClass="bi bi-arrow-bar-down" />
     <!-- <div class="form-group p-2">
       <select id="yearSelect" v-model="selectedYear" class="form-select">
         <option v-for="year in availableYears" :key="year" :value="year">{{ year }}</option>
       </select>
     </div> -->
-    <div>The Offences Count represents the number of recorded offences under offence division “A
-      Crimes against the person”</div>
   </div>
 
   <div class="row g-4">
@@ -85,7 +89,7 @@
             <div>
               <h5 class="mb-1">Need help?</h5>
               <strong class="fs-5">Call 1800 737 732</strong>
-              <div>for emergency assistance</div>
+              <div id="end">for emergency assistance</div>
             </div>
           </div>
         </div>
@@ -99,7 +103,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
-import MaporTextFrame from '../components/F1Frames.vue'
+import MaporTextFrame from '../components/F1Frames.vue';
+import ScrollDown from '../components/Scrolldown.vue';
 
 const selectedYear = ref(2015);
 const availableYears = ref([2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);

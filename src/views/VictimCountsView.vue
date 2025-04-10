@@ -52,7 +52,7 @@
 
         <div class="card">
           <div class="card-header bg-light">
-            <h4>You need to know</h4>
+            <h4>You Need To Be Aware</h4>
           </div>
           <div class="card-body">
             <MaporTextFrame :url="`${API_BASE_URL}/api/trend_insights?start_year=${startYear}&end_year=${endYear}`"

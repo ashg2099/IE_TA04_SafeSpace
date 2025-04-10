@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-md fixed-top bg-white border-bottom border-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <RouterLink class="navbar-brand" to="/">
         <img alt="logo" src="@/assets/logo.svg" width="100" height="100" />
-      </a>
+      </RouterLink>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
         aria-controls="offcanvas" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,12 +18,12 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-            <li class="nav-item"><a class="nav-link" href="#">Real crim stats</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Product</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Enterprise</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/real-crime-stat">Real crime stats</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="#">Safety challenge</RouterLink>
+            </li>
           </ul>
         </div>
       </div>
@@ -34,10 +34,13 @@
   <div style="padding-top: 80px;"></div>
 </template>
 
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
+</script>
+
 <style scoped>
 .navbar {
   height: 95px;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 </style>
