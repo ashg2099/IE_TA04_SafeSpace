@@ -2,6 +2,9 @@
 import { RouterLink, RouterView } from 'vue-router'
 // import HelloWorld from './components/HelloWorld.vue'
 import FirstView from './views/FirstView.vue'
+import VisualizationView from './views/VisualizationView.vue';
+import F1Map from './views/OffenseCountView.vue';
+import VictimCountsView from './views/VictimCountsView.vue';
 </script>
 
 <template>
@@ -17,9 +20,13 @@ import FirstView from './views/FirstView.vue'
       </nav>
     </div>
   </header> -->
-  <FirstView></FirstView>
+
 
   <!-- <RouterView /> -->
+  <!-- <FirstView></FirstView> -->
+  <!-- <VisualizationView></VisualizationView> -->
+  <!-- <F1Map></F1Map> -->
+  <VictimCountsView></VictimCountsView>
 </template>
 
 <style scoped>

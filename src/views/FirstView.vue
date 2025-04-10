@@ -6,7 +6,7 @@
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold">Have you ever felt unsafe in the cities?</h1>
           <p class="lead my-3 fs-3">
-            Hey, it’s more than normal than you think
+            Hey, it’s more than normal than you think<br>
             – Actually, only 50% of Australian women feel safe walking alone at night, according to the OECD Better Life
             Index
           </p>
