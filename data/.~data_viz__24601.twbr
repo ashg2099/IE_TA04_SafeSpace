@@ -1,0 +1,2348 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20233.23.1017.0948                               -->
+<workbook original-version='18.1' source-build='2023.3.0 (20233.23.1017.0948)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <CascadingFilters />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <style-rule element='gridline'>
+      <format attr='stroke-color' value='#e6e6e6ce' />
+      <format attr='stroke-size' value='1' />
+    </style-rule>
+    <style-rule element='zeroline'>
+      <format attr='line-visibility' value='off' />
+    </style-rule>
+    <style-rule element='title'>
+      <format attr='font-size' value='20' />
+      <format attr='font-weight' value='bold' />
+    </style-rule>
+    <style-rule element='tooltip'>
+      <format attr='font-weight' value='normal' />
+    </style-rule>
+    <style-rule element='all'>
+      <format attr='font-family' value='Avenir LT 55 Roman' />
+    </style-rule>
+  </style>
+  <datasources>
+    <datasource caption='melb_crime_stat_yearly' inline='true' name='federated.0ydx9t2142bry713q4krx064due5' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='melb_crime_stat_yearly' name='textscan.09mglub0j3ee4y12ni5370pa2fxq'>
+            <connection class='textscan' directory='Data/data' filename='melb_crime_stat_yearly.csv' password='' server='' />
+          </named-connection>
+          <named-connection caption='aus_victims_by_gender_yearly' name='textscan.0hmb7qd02g44nb1bopp9o12d2s45'>
+            <connection class='textscan' directory='Data/Users/miranda/Monash/IE_TA04_RealProject/data' filename='aus_victims_by_gender_yearly.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.0hmb7qd02g44nb1bopp9o12d2s45' name='aus_victims_by_gender_yearly.csv' table='[aus_victims_by_gender_yearly#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_HK' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='integer' name='year' ordinal='1' />
+            <column datatype='string' name='sex' ordinal='2' />
+            <column datatype='string' name='offence_division' ordinal='3' />
+            <column datatype='string' name='offence_subdivision' ordinal='4' />
+            <column datatype='integer' name='victims' ordinal='5' />
+            <column datatype='integer' name='total_victims' ordinal='6' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+          <relation connection='textscan.09mglub0j3ee4y12ni5370pa2fxq' name='melb_crime_stat_yearly.csv' table='[melb_crime_stat_yearly#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_HK' separator=','>
+              <column datatype='integer' name='F1' ordinal='0' />
+              <column datatype='integer' name='year' ordinal='1' />
+              <column datatype='string' name='local_government_area' ordinal='2' />
+              <column datatype='integer' name='postcode' ordinal='3' />
+              <column datatype='string' name='suburb_town_name' ordinal='4' />
+              <column datatype='string' name='offence_division' ordinal='5' />
+              <column datatype='string' name='offence_subdivision' ordinal='6' />
+              <column datatype='string' name='offence_subgroup' ordinal='7' />
+              <column datatype='real' name='incidents_recorded' ordinal='8' />
+              <column datatype='real' name='offence_count' ordinal='9' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0hmb7qd02g44nb1bopp9o12d2s45' name='aus_victims_by_gender_yearly.csv' table='[aus_victims_by_gender_yearly#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_HK' separator=','>
+              <column datatype='integer' name='F1' ordinal='0' />
+              <column datatype='integer' name='year' ordinal='1' />
+              <column datatype='string' name='sex' ordinal='2' />
+              <column datatype='string' name='offence_division' ordinal='3' />
+              <column datatype='string' name='offence_subdivision' ordinal='4' />
+              <column datatype='integer' name='victims' ordinal='5' />
+              <column datatype='integer' name='total_victims' ordinal='6' />
+            </columns>
+          </relation>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <cols>
+          <map key='[F1 (aus_victims_by_gender_yearly.csv)]' value='[aus_victims_by_gender_yearly.csv].[F1]' />
+          <map key='[F1]' value='[melb_crime_stat_yearly.csv].[F1]' />
+          <map key='[incidents_recorded]' value='[melb_crime_stat_yearly.csv].[incidents_recorded]' />
+          <map key='[local_government_area]' value='[melb_crime_stat_yearly.csv].[local_government_area]' />
+          <map key='[offence_count]' value='[melb_crime_stat_yearly.csv].[offence_count]' />
+          <map key='[offence_division (aus_victims_by_gender_yearly.csv)]' value='[aus_victims_by_gender_yearly.csv].[offence_division]' />
+          <map key='[offence_division]' value='[melb_crime_stat_yearly.csv].[offence_division]' />
+          <map key='[offence_subdivision (aus_victims_by_gender_yearly.csv)]' value='[aus_victims_by_gender_yearly.csv].[offence_subdivision]' />
+          <map key='[offence_subdivision]' value='[melb_crime_stat_yearly.csv].[offence_subdivision]' />
+          <map key='[offence_subgroup]' value='[melb_crime_stat_yearly.csv].[offence_subgroup]' />
+          <map key='[postcode]' value='[melb_crime_stat_yearly.csv].[postcode]' />
+          <map key='[sex]' value='[aus_victims_by_gender_yearly.csv].[sex]' />
+          <map key='[suburb_town_name]' value='[melb_crime_stat_yearly.csv].[suburb_town_name]' />
+          <map key='[total_victims]' value='[aus_victims_by_gender_yearly.csv].[total_victims]' />
+          <map key='[victims]' value='[aus_victims_by_gender_yearly.csv].[victims]' />
+          <map key='[year (aus_victims_by_gender_yearly.csv)]' value='[aus_victims_by_gender_yearly.csv].[year]' />
+          <map key='[year]' value='[melb_crime_stat_yearly.csv].[year]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;HK$&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_HK&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;HK$&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_HK&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F1]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[year]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>year</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>local_government_area</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[local_government_area]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>local_government_area</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>postcode</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[postcode]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>postcode</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>suburb_town_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[suburb_town_name]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>suburb_town_name</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>offence_division</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[offence_division]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>offence_division</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>offence_subdivision</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[offence_subdivision]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>offence_subdivision</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>offence_subgroup</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[offence_subgroup]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>offence_subgroup</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>incidents_recorded</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[incidents_recorded]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>incidents_recorded</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>offence_count</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[offence_count]</local-name>
+            <parent-name>[melb_crime_stat_yearly.csv]</parent-name>
+            <remote-alias>offence_count</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F1 (aus_victims_by_gender_yearly.csv)]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[year (aus_victims_by_gender_yearly.csv)]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>year</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sex</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[sex]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>sex</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>offence_division</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[offence_division (aus_victims_by_gender_yearly.csv)]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>offence_division</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>offence_subdivision</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[offence_subdivision (aus_victims_by_gender_yearly.csv)]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>offence_subdivision</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>victims</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[victims]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>victims</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_victims</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[total_victims]</local-name>
+            <parent-name>[aus_victims_by_gender_yearly.csv]</parent-name>
+            <remote-alias>total_victims</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+      </column>
+      <column caption='F1 (aus victims by gender yearly.csv)' datatype='integer' name='[F1 (aus_victims_by_gender_yearly.csv)]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[F1]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='aus_victims_by_gender_yearly.csv' datatype='table' name='[__tableau_internal_object_id__].[aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='melb_crime_stat_yearly.csv' datatype='table' name='[__tableau_internal_object_id__].[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]' role='measure' type='quantitative' />
+      <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+      <column caption='Local Government Area' datatype='string' name='[local_government_area]' role='dimension' type='nominal' />
+      <column caption='Offence Count' datatype='real' name='[offence_count]' role='measure' type='quantitative' />
+      <column caption='Offence Division (Aus Victims By Gender Yearly.Csv)' datatype='string' name='[offence_division (aus_victims_by_gender_yearly.csv)]' role='dimension' type='nominal' />
+      <column caption='Offence Division' datatype='string' name='[offence_division]' role='dimension' type='nominal' />
+      <column caption='Offence Subdivision (Aus Victims By Gender Yearly.Csv)' datatype='string' name='[offence_subdivision (aus_victims_by_gender_yearly.csv)]' role='dimension' type='nominal' />
+      <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+      <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+      <column caption='Sex' datatype='string' name='[sex]' role='dimension' type='nominal' />
+      <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+      <column caption='Total Victims' datatype='integer' name='[total_victims]' role='measure' type='quantitative' />
+      <column caption='Victims' datatype='integer' name='[victims]' role='measure' type='quantitative' />
+      <column caption='Year (Aus Victims By Gender Yearly.Csv)' datatype='integer' name='[year (aus_victims_by_gender_yearly.csv)]' role='dimension' type='quantitative' />
+      <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      <column-instance column='[__tableau_internal_object_id__].[melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+      <column-instance column='[incidents_recorded]' derivation='Sum' name='[pcto:sum:incidents_recorded:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[F1]' derivation='Sum' name='[sum:F1:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[offence_count]' derivation='Sum' name='[sum:offence_count:qk]' pivot='key' type='quantitative' />
+      <group caption='Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)' hidden='true' name='[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+          <groupfilter function='level-members' level='[offence_subdivision]' />
+          <groupfilter function='level-members' level='[postcode]' />
+          <groupfilter function='level-members' level='[suburb_town_name]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Suburb and Postcode,Postcode,Suburb Town Name)' hidden='true' name='[Action (Suburb and Postcode,Postcode,Suburb Town Name)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+          <groupfilter function='level-members' level='[postcode]' />
+          <groupfilter function='level-members' level='[suburb_town_name]' />
+        </groupfilter>
+      </group>
+      <drill-paths>
+        <drill-path name='Offence'>
+          <field>[offence_division]</field>
+          <field>[offence_subdivision]</field>
+          <field>[offence_subgroup]</field>
+        </drill-path>
+      </drill-paths>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' palette='miller_stone_10_0' type='palette'>
+            <map to='#4f6980'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[pcto:sum:incidents_recorded:qk]&quot;</bucket>
+            </map>
+            <map to='#4f6980'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]:1&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:F1:qk]&quot;</bucket>
+            </map>
+            <map to='#849db1'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5]&quot;</bucket>
+            </map>
+            <map to='#b66353'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[__tableau_internal_object_id__].[cnt:melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA:qk]&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:offence_subdivision:nk]' palette='superfishel_stone_10_0' type='palette'>
+            <map to='#55ad89'>
+              <bucket>&quot;Other crimes against the person&quot;</bucket>
+            </map>
+            <map to='#6388b4'>
+              <bucket>&quot;A20 Assault and related offences&quot;</bucket>
+            </map>
+            <map to='#8cc2ca'>
+              <bucket>&quot;A80 Dangerous and negligent acts endangering people&quot;</bucket>
+            </map>
+            <map to='#ef6f6a'>
+              <bucket>&quot;A70 Stalking, harassment and threatening behaviour&quot;</bucket>
+            </map>
+            <map to='#ffae34'>
+              <bucket>&quot;A50 Robbery&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Australia&quot;' />
+        <semantic-value key='[ZipCode].[Name]' value='%null%' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='aus_victims_by_gender_yearly.csv' id='aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555'>
+            <properties context=''>
+              <relation connection='textscan.0hmb7qd02g44nb1bopp9o12d2s45' name='aus_victims_by_gender_yearly.csv' table='[aus_victims_by_gender_yearly#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_HK' separator=','>
+                  <column datatype='integer' name='F1' ordinal='0' />
+                  <column datatype='integer' name='year' ordinal='1' />
+                  <column datatype='string' name='sex' ordinal='2' />
+                  <column datatype='string' name='offence_division' ordinal='3' />
+                  <column datatype='string' name='offence_subdivision' ordinal='4' />
+                  <column datatype='integer' name='victims' ordinal='5' />
+                  <column datatype='integer' name='total_victims' ordinal='6' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+          <object caption='melb_crime_stat_yearly.csv' id='melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA'>
+            <properties context=''>
+              <relation connection='textscan.09mglub0j3ee4y12ni5370pa2fxq' name='melb_crime_stat_yearly.csv' table='[melb_crime_stat_yearly#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_HK' separator=','>
+                  <column datatype='integer' name='F1' ordinal='0' />
+                  <column datatype='integer' name='year' ordinal='1' />
+                  <column datatype='string' name='local_government_area' ordinal='2' />
+                  <column datatype='integer' name='postcode' ordinal='3' />
+                  <column datatype='string' name='suburb_town_name' ordinal='4' />
+                  <column datatype='string' name='offence_division' ordinal='5' />
+                  <column datatype='string' name='offence_subdivision' ordinal='6' />
+                  <column datatype='string' name='offence_subgroup' ordinal='7' />
+                  <column datatype='real' name='incidents_recorded' ordinal='8' />
+                  <column datatype='real' name='offence_count' ordinal='9' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[year]' />
+                <expression op='[year (aus_victims_by_gender_yearly.csv)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[offence_division]' />
+                <expression op='[offence_division (aus_victims_by_gender_yearly.csv)]' />
+              </expression>
+              <expression op='='>
+                <expression op='[offence_subdivision]' />
+                <expression op='[offence_subdivision (aus_victims_by_gender_yearly.csv)]' />
+              </expression>
+            </expression>
+            <first-end-point object-id='melb_crime_stat_yearly.csv_A11EDD3C894A4947AE1895C77B962EAA' />
+            <second-end-point object-id='aus_victims_by_gender_yearly.csv_06293EDDAD504D28A1C72B23730FD555' />
+          </relationship>
+        </relationships>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='federated.0ydx9t2142bry713q4krx064due5'>
+      <datasources>
+        <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+        <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+        <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+        <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+        <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+        <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+        <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' context='true'>
+        <groupfilter function='level-members' level='[none:offence_subdivision:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]' context='true'>
+        <groupfilter function='level-members' level='[none:offence_subgroup:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]' context='true'>
+        <groupfilter function='level-members' level='[none:year:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <actions>
+    <action caption='Filter 1 (generated)' name='[Action1_0521D75E526A49D69D54C44EF7BB87EF]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Area' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 2 (generated)' name='[Action2_C40BC90B01374AA282CDF98948E61B6C]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Area X Offence type' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 3 (generated)' name='[Action3_93559911AFA24AA38E460951F9ED7AE1]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Year Trend' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 4 (generated)' name='[Action4_BCB01DBFA2B54CBFB06298027C325F7F]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='IncidentsTrend by Offence Type' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+    <action caption='Filter 5 (generated)' name='[Action5_AA65AD1B0F544A35AA866094B89A4585]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Dashboard 1' type='sheet' worksheet='Offences by Offence Type' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Dashboard 1' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='Area'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_1731141541637824516]' derivation='None' name='[none:Calculation_1731141541637824516:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[postcode]' derivation='None' name='[none:postcode:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[suburb_town_name]' derivation='None' name='[none:suburb_town_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Offence Count' datatype='real' name='[offence_count]' role='measure' type='quantitative' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[offence_count]' derivation='Sum' name='[sum:offence_count:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_C40BC90B01374AA282CDF98948E61B6C]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[offence_subdivision]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]' direction='DESC' measure-to-sort-by='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' shelf='rows' />
+            <shelf-sort-v2 dimension-to-sort='[federated.0ydx9t2142bry713q4krx064due5].[none:postcode:ok]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' shelf='rows' />
+            <shelf-sort-v2 dimension-to-sort='[federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk]' direction='DESC' measure-to-sort-by='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.0ydx9t2142bry713q4krx064due5].[none:postcode:ok]' value='76' />
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+            <format attr='width' field='[federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk]' value='124' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]' value='false' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='right' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='on' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#626fbc' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='right' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='on' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#626fbc' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='right' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='on' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#626fbc' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk] / ([federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk] / [federated.0ydx9t2142bry713q4krx064due5].[none:postcode:ok]))</rows>
+        <cols>([federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk] + [federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk])</cols>
+        <page-trail-options enabled='true' />
+      </table>
+      <simple-id uuid='{44A2A898-73D3-4EA8-BFC5-210E4C12B2EA}' />
+    </worksheet>
+    <worksheet name='Area X Offence type'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Offences Count by Suburb and Offence</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_1731141541637824516]' derivation='None' name='[none:Calculation_1731141541637824516:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[postcode]' derivation='None' name='[none:postcode:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[suburb_town_name]' derivation='None' name='[none:suburb_town_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[pcto:sum:incidents_recorded:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0521D75E526A49D69D54C44EF7BB87EF]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]' direction='DESC' using='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' />
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk]' direction='DESC' measure-to-sort-by='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' value='173' />
+            <format attr='text-format' field='[federated.0ydx9t2142bry713q4krx064due5].[pcto:sum:incidents_recorded:qk]' value='p0%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk]' value='116' />
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]' value='false' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='size-bar' field='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' field-type='quantitative' max-size='1' min-size='0.005' type='centersize' />
+            <encoding attr='color' field='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-sequential'>
+                <color>#f1f1f1</color>
+                <color>#d6dee6</color>
+                <color>#beccdb</color>
+                <color>#a6bbd0</color>
+                <color>#90abc5</color>
+                <color>#7c9cbb</color>
+                <color>#698db0</color>
+                <color>#577fa5</color>
+                <color>#47719a</color>
+                <color>#39648f</color>
+                <color>#2c5985</color>
+              </color-palette>
+            </encoding>
+            <encoding attr='size-bar' field='[federated.0ydx9t2142bry713q4krx064due5].[pcto:sum:incidents_recorded:qk]' field-type='quantitative' max-size='1' min-size='0.005' type='centersize' />
+            <encoding attr='color' field='[federated.0ydx9t2142bry713q4krx064due5].[pcto:sum:incidents_recorded:qk]' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-sequential'>
+                <color>#f1f1f1</color>
+                <color>#d6dee6</color>
+                <color>#beccdb</color>
+                <color>#a6bbd0</color>
+                <color>#90abc5</color>
+                <color>#7c9cbb</color>
+                <color>#698db0</color>
+                <color>#577fa5</color>
+                <color>#47719a</color>
+                <color>#39648f</color>
+                <color>#2c5985</color>
+              </color-palette>
+            </encoding>
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Square' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' />
+              <text column='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' />
+              <text column='[federated.0ydx9t2142bry713q4krx064due5].[pcto:sum:incidents_recorded:qk]' />
+            </encodings>
+            <customized-label>
+              <formatted-text>
+                <run fontalignment='0'>&lt;</run>
+                <run fontalignment='0'>[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]</run>
+                <run fontalignment='0'>&gt; (&lt;</run>
+                <run fontalignment='0'>[federated.0ydx9t2142bry713q4krx064due5].[pcto:sum:incidents_recorded:qk]</run>
+                <run fontalignment='0'>&gt;)</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-line-first' value='true' />
+                <format attr='mark-labels-line-last' value='true' />
+                <format attr='mark-labels-range-min' value='true' />
+                <format attr='mark-labels-range-max' value='true' />
+                <format attr='mark-labels-mode' value='all' />
+                <format attr='mark-labels-range-scope' value='pane' />
+                <format attr='mark-labels-range-field' value='' />
+                <format attr='has-stroke' value='false' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows total='true'>([federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk] / ([federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk] / [federated.0ydx9t2142bry713q4krx064due5].[none:postcode:ok]))</rows>
+        <cols total='true'>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</cols>
+      </table>
+      <simple-id uuid='{C8D8B147-CD30-4C41-995A-C6358F35A7D7}' />
+    </worksheet>
+    <worksheet name='Area by Year'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_1731141541637824516]' derivation='None' name='[none:Calculation_1731141541637824516:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[postcode]' derivation='None' name='[none:postcode:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[suburb_town_name]' derivation='None' name='[none:suburb_town_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:qk]' pivot='key' type='quantitative' />
+            <column caption='Offence Count' datatype='real' name='[offence_count]' role='measure' type='quantitative' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[offence_count]' derivation='Sum' name='[sum:offence_count:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='SUM([incidents_recorded])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:Calculation_1731141541637824516:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]' direction='DESC' using='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' />
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <encoding attr='space' class='0' field='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' field-type='quantitative' range-type='uniform' scope='rows' type='space' />
+            <format attr='tick-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk]' value='false' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='div-level' scope='rows' value='1' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='right' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='on' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='179' />
+                <format attr='maxheight' value='179' />
+                <format attr='minwidth' value='977' />
+                <format attr='maxwidth' value='977' />
+                <format attr='aspect' value='0' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='right' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='on' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='4' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='right' />
+                <format attr='vertical-align' value='center' />
+                <format attr='wrap' value='on' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>(([federated.0ydx9t2142bry713q4krx064due5].[none:Calculation_1731141541637824516:nk] / ([federated.0ydx9t2142bry713q4krx064due5].[none:suburb_town_name:nk] / [federated.0ydx9t2142bry713q4krx064due5].[none:postcode:ok])) * ([federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk] + [federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]))</rows>
+        <cols>[federated.0ydx9t2142bry713q4krx064due5].[none:year:qk]</cols>
+        <page-trail-options enabled='true' />
+      </table>
+      <simple-id uuid='{E167B2D8-6540-40C9-BC36-AA4B7617C934}' />
+    </worksheet>
+    <worksheet name='IncidentsTrend by Offence Type'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Total Incidence Over Time</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]'>
+            <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;' user:op='manual' />
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_C40BC90B01374AA282CDF98948E61B6C]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[offence_subdivision]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0521D75E526A49D69D54C44EF7BB87EF]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' value='#00000000' />
+            <format attr='display' class='0' field='[federated.0ydx9t2142bry713q4krx064due5].[Multiple Values]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+          <style-rule element='title'>
+            <format attr='font-size' value='16' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+                <format attr='vertical-align' value='auto' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ydx9t2142bry713q4krx064due5].[Multiple Values]</rows>
+        <cols>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</cols>
+        <page-trail-options enabled='true' />
+      </table>
+      <simple-id uuid='{902577B5-6099-47A5-B506-9FB1F3EBE537}' />
+    </worksheet>
+    <worksheet name='IncidentsTrend by Offence Type (2)'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Total Incidence Over Time</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]'>
+            <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;' user:op='manual' />
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_C40BC90B01374AA282CDF98948E61B6C]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[offence_subdivision]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0521D75E526A49D69D54C44EF7BB87EF]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' value='#00000000' />
+            <format attr='display' class='0' field='[federated.0ydx9t2142bry713q4krx064due5].[Multiple Values]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+          <style-rule element='title'>
+            <format attr='font-size' value='16' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' />
+              <text column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]' />
+              <lod column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+                <format attr='vertical-align' value='auto' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+                <format attr='mark-labels-range-scope' value='multi-mark' />
+                <format attr='mark-labels-mode' value='line-ends' />
+                <format attr='mark-labels-line-first' value='false' />
+                <format attr='mark-labels-cull' value='false' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ydx9t2142bry713q4krx064due5].[Multiple Values]</rows>
+        <cols>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</cols>
+        <page-trail-options enabled='true' />
+      </table>
+      <simple-id uuid='{41CA29C1-64D2-4763-A356-40D781893A22}' />
+    </worksheet>
+    <worksheet name='Offences by Offence Type'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Total Offences Count Over Time</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Offence Count' datatype='real' name='[offence_count]' role='measure' type='quantitative' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[offence_count]' derivation='Sum' name='[sum:offence_count:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]'>
+            <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_C40BC90B01374AA282CDF98948E61B6C]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[offence_subdivision]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0521D75E526A49D69D54C44EF7BB87EF]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' value='#00000000' />
+            <format attr='display' class='0' field='[federated.0ydx9t2142bry713q4krx064due5].[Multiple Values]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+          <style-rule element='title'>
+            <format attr='font-size' value='16' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+                <format attr='vertical-align' value='auto' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ydx9t2142bry713q4krx064due5].[Multiple Values]</rows>
+        <cols>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</cols>
+        <page-trail-options enabled='true' />
+      </table>
+      <simple-id uuid='{860A6C2C-351C-48A5-B28B-2B2F38203918}' />
+    </worksheet>
+    <worksheet name='Year Trend'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Total Incidence and Offences Count Over Time</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+            <column caption='Suburb and Postcode' datatype='string' name='[Calculation_1731141541637824516]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[suburb_town_name] + &quot; + &quot; + str([postcode])' />
+            </column>
+            <column caption='Incidents Recorded' datatype='real' name='[incidents_recorded]' role='measure' type='quantitative' />
+            <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+            <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column caption='Offence Count' datatype='real' name='[offence_count]' role='measure' type='quantitative' />
+            <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+            <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+            <column aggregation='Sum' caption='Postcode' datatype='integer' default-format='*00000' name='[postcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+            <column caption='Suburb Town Name' datatype='string' name='[suburb_town_name]' role='dimension' type='nominal' />
+            <column-instance column='[incidents_recorded]' derivation='Sum' name='[sum:incidents_recorded:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[offence_count]' derivation='Sum' name='[sum:offence_count:qk]' pivot='key' type='quantitative' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <manual-sort column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]&quot;</bucket>
+              <bucket>&quot;[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action2_C40BC90B01374AA282CDF98948E61B6C]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[offence_subdivision]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]'>
+            <groupfilter function='crossjoin' user:ui-action-filter='[Action1_0521D75E526A49D69D54C44EF7BB87EF]' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_1731141541637824516]' />
+              <groupfilter function='level-members' level='[postcode]' />
+              <groupfilter function='level-members' level='[suburb_town_name]' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Postcode,Suburb Town Name)]</column>
+            <column>[federated.0ydx9t2142bry713q4krx064due5].[Action (Suburb and Postcode,Offence Subdivision,Postcode,Suburb Town Name)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <format attr='tick-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' value='0' />
+            <format attr='border-style' data-class='total' value='none' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' value='0' />
+            <format attr='line-visibility' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' value='0' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='div-level' scope='rows' value='0' />
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+            <format attr='stroke-color' scope='rows' value='#e6e6e6' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='header-div'>
+            <format attr='stroke-size' scope='rows' value='1' />
+            <format attr='line-visibility' scope='rows' value='on' />
+            <format attr='line-pattern-only' scope='rows' value='solid' />
+          </style-rule>
+          <style-rule element='title'>
+            <format attr='font-size' value='16' />
+          </style-rule>
+          <style-rule element='legend'>
+            <format attr='col-width' field='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' value='140' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+                <format attr='vertical-align' value='auto' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+                <format attr='vertical-align' value='auto' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' />
+            </encodings>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='auto' />
+                <format attr='vertical-align' value='auto' />
+                <format attr='wrap' value='auto' />
+              </style-rule>
+              <style-rule element='datalabel'>
+                <format attr='color-mode' value='match' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#626fbc' />
+              </style-rule>
+              <style-rule element='trendline'>
+                <format attr='stroke-size' value='0' />
+                <format attr='line-visibility' value='off' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk] + [federated.0ydx9t2142bry713q4krx064due5].[sum:offence_count:qk])</rows>
+        <cols>[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]</cols>
+        <page-trail-options enabled='true' />
+      </table>
+      <simple-id uuid='{4FF10371-0E5E-409A-88A1-9967E7715D2D}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Dashboard 1'>
+      <style>
+        <style-rule element='dash-subtitle'>
+          <format attr='font-size' value='16' />
+        </style-rule>
+      </style>
+      <size maxheight='1000' maxwidth='1700' minheight='1000' minwidth='1700' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='melb_crime_stat_yearly' name='federated.0ydx9t2142bry713q4krx064due5' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ydx9t2142bry713q4krx064due5'>
+        <column-instance column='[offence_subdivision]' derivation='None' name='[none:offence_subdivision:nk]' pivot='key' type='nominal' />
+        <column-instance column='[offence_subgroup]' derivation='None' name='[none:offence_subgroup:nk]' pivot='key' type='nominal' />
+        <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+        <column caption='Offence Subdivision' datatype='string' name='[offence_subdivision]' role='dimension' type='nominal' />
+        <column caption='Offence Subgroup' datatype='string' name='[offence_subgroup]' role='dimension' type='nominal' />
+        <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='98000' id='8' param='horz' type-v2='layout-flow' w='98400' x='800' y='1000'>
+          <zone fixed-size='163' h='98000' id='11' is-fixed='true' param='vert' type-v2='layout-flow' w='9588' x='800' y='1000'>
+            <zone h='24700' id='12' name='Year Trend' param='[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]' show-apply='true' type-v2='filter' values='database' w='9588' x='800' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='5600' id='19' name='Area X Offence type' pane-specification-id='0' param='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' type-v2='color' w='9588' x='800' y='25700'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='13600' id='30' name='Area' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' type-v2='filter' values='cascading' w='9588' x='800' y='31300'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='37000' id='31' name='Area' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subgroup:nk]' type-v2='filter' values='cascading' w='9588' x='800' y='44900'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone h='98000' id='3' param='vert' type-v2='layout-flow' w='88808' x='10388' y='1000'>
+            <zone fixed-size='250' h='25000' id='22' is-fixed='true' layout-strategy-id='distribute-evenly' param='horz' type-v2='layout-flow' w='88338' x='10623' y='1400'>
+              <zone fixed-size='242' h='25000' id='10' is-fixed='true' name='Year Trend' w='44177' x='10647' y='1400'>
+                <layout-cache cell-count-w='1' minheight='157' non-cell-size-w='95' type-h='scalable' type-w='cell' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='292' h='25000' id='4' is-fixed='true' name='Area' w='44117' x='54824' y='1400'>
+                <layout-cache fixed-size-h='442' minwidth='402' type-h='fixed' type-w='scalable' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone fixed-size='350' h='35000' id='23' is-fixed='true' param='horz' type-v2='layout-flow' w='88338' x='10623' y='26400'>
+              <zone fixed-size='171' h='35000' id='26' is-fixed='true' name='IncidentsTrend by Offence Type' pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' type-v2='color' w='10530' x='10623' y='26400'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='419' h='35000' id='24' is-fixed='true' name='IncidentsTrend by Offence Type' w='25118' x='21153' y='26400'>
+                <layout-cache minheight='177' type-h='scalable' type-w='cell' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='35000' id='27' name='Offences by Offence Type' w='52689' x='46271' y='26400'>
+                <layout-cache minheight='157' type-h='scalable' type-w='cell' />
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone h='37192' id='18' name='Area X Offence type' w='88338' x='10623' y='61400'>
+              <layout-cache cell-count-w='6' non-cell-size-w='197' type-h='cell' type-w='cell' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
+          </zone>
+        </zone>
+        <zone h='3000' id='13' leg-item-layout='horz' name='Year Trend' pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' show-title='false' type-v2='color' w='19824' x='17353' y='4800' />
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='1600' minheight='1600' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='29' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98400' id='28' param='vert' type-v2='layout-flow' w='99058' x='471' y='800'>
+                <zone h='24700' id='12' mode='checkdropdown' name='Year Trend' param='[federated.0ydx9t2142bry713q4krx064due5].[none:year:ok]' show-apply='true' type-v2='filter' values='database' w='9588' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='242' h='25000' id='10' is-fixed='true' name='Year Trend' w='22118' x='10647' y='1400'>
+                  <layout-cache cell-count-w='1' minheight='200' non-cell-size-w='95' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='3000' id='13' leg-item-layout='horz' name='Year Trend' pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' show-title='false' type-v2='color' w='19824' x='17353' y='4800'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='242' h='25000' id='24' is-fixed='true' name='IncidentsTrend by Offence Type' w='22059' x='32765' y='1400'>
+                  <layout-cache cell-count-w='10' minheight='177' non-cell-size-w='1' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='25000' id='26' name='IncidentsTrend by Offence Type' pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' type-v2='color' w='22059' x='76882' y='1400'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='242' h='25000' id='27' is-fixed='true' name='Offences by Offence Type' w='22058' x='54824' y='1400'>
+                  <layout-cache cell-count-w='10' minheight='177' non-cell-size-w='1' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='35000' id='4' is-fixed='true' name='Area' w='88334' x='10623' y='26400'>
+                  <layout-cache fixed-size-h='442' minwidth='402' type-h='fixed' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='37194' id='18' is-fixed='true' name='Area X Offence type' w='88334' x='10623' y='61400'>
+                  <layout-cache type-h='cell' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='5600' id='19' name='Area X Offence type' pane-specification-id='0' param='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' type-v2='color' w='9588' x='800' y='25700'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{D7CE52C8-7069-4A6F-8FB4-244EC01974DC}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='dashboard' name='Dashboard 1'>
+      <viewpoints>
+        <viewpoint name='Area'>
+          <current-page>
+            <multibucket>
+              <bucket>2024</bucket>
+            </multibucket>
+          </current-page>
+        </viewpoint>
+        <viewpoint name='Area X Offence type'>
+          <current-page>
+            <multibucket>
+              <bucket>2024</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='IncidentsTrend by Offence Type'>
+          <current-page>
+            <multibucket>
+              <bucket>2024</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Offences by Offence Type'>
+          <current-page>
+            <multibucket>
+              <bucket>2024</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Year Trend'>
+          <current-page>
+            <multibucket>
+              <bucket>2024</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='24' />
+      <simple-id uuid='{DFBC0663-A301-412F-80BA-FB49A73541B6}' />
+    </window>
+    <window class='worksheet' name='Year Trend'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{7BC0CB3F-BA7A-4B2D-B1D0-D9021AE669C5}' />
+    </window>
+    <window class='worksheet' maximized='true' name='IncidentsTrend by Offence Type'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' show-morefewerbutton='false' type='filter' />
+            <card pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{78D72C24-6261-432C-B0C6-2F86078BCC85}' />
+    </window>
+    <window class='worksheet' name='IncidentsTrend by Offence Type (2)'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' show-morefewerbutton='false' type='filter' />
+            <card pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{7843E7B5-648C-4240-96E5-00658EA50BA5}' />
+    </window>
+    <window class='worksheet' name='Offences by Offence Type'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' show-morefewerbutton='false' type='filter' />
+            <card pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[none:offence_subdivision:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{C496F6F1-29C8-49BE-AECB-84A2373BAEAD}' />
+    </window>
+    <window class='worksheet' name='Area'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{136323C1-1870-4E7C-AA29-6EC642A9F67F}' />
+    </window>
+    <window class='worksheet' name='Area by Year'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='3' param='[federated.0ydx9t2142bry713q4krx064due5].[:Measure Names]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{8AAAE8A3-7E97-4C36-BE0C-2E2A0E8D438C}' />
+    </window>
+    <window class='worksheet' name='Area X Offence type'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0ydx9t2142bry713q4krx064due5].[sum:incidents_recorded:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>2024</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{22EBF44B-CAB2-4C0B-9083-6EC06130C7A4}' />
+    </window>
+  </windows>
+</workbook>
