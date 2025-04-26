@@ -52,8 +52,17 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
-    }],
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: [
+                '--headless',              // Run Chrome in headless mode
+                '--no-sandbox',            // Recommended for Linux in CI
+                '--disable-dev-shm-usage', // Overcome limited resource problems
+                '--disable-gpu',           // Disable GPU
+                '--window-size=1920,1080', // Set window size
+            ]
+        }
+    }]
 
     //
     // ===================
