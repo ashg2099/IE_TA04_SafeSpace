@@ -62,7 +62,7 @@ export const config: WebdriverIO.Config = {
                 '--window-size=1920,1080', // Set window size
             ]
         }
-    }]
+    }],
 
     //
     // ===================
