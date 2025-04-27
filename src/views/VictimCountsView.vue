@@ -55,8 +55,7 @@
             <h4>You Need To Be Aware</h4>
           </div>
           <div class="card-body">
-            <MaporTextFrame :url="`${API_BASE_URL}/api/trend_insights?start_year=${startYear}&end_year=${endYear}`"
-              height="300px" />
+            <p>...</p>
           </div>
         </div>
 
@@ -83,7 +82,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
-import MaporTextFrame from '../components/F1Frames.vue'
+import MaporTextFrame from '../components/EmbededFrame.vue'
 
 const startYear = ref(2015);
 const endYear = ref(2024);

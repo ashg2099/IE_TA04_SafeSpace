@@ -17,9 +17,9 @@
   <div class="row g-4">
     <div class="col-lg-8">
       <!-- Main map with shadow and rounded corners -->
-      <div class="card shadow border-0 overflow-hidden">
-        <div class="card-body p-0">
-          <MaporTextFrame :url="`${API_BASE_URL}/api/aggregated_map?year=${selectedYear}`" height="1150px" />
+      <div class="card shadow border-0 overflow-hidden h-100">
+        <div class="card-body p-0 d-flex flex-column">
+          <EmbededFrame :url="offenceURL" class="flex-grow-1" />
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
           <h5 class="mb-0">You Need To Be Aware</h5>
         </div>
         <div class="card-body p-0">
-          <MaporTextFrame :url="`${API_BASE_URL}/api/insights?year=${selectedYear}`" height="300px" />
+          <!-- <MaporTextFrame :url="offenceURL" height="800px" /> -->
         </div>
       </div>
 
@@ -102,9 +102,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
-import MaporTextFrame from '../components/F1Frames.vue';
+import EmbededFrame from '../components/EmbededFrame.vue';
 import ScrollDown from '../components/ScrollDown.vue';
+
+const offenceURL = import.meta.env.VITE_TABLEAU_DASHBOARD_OFFENCES_COUNT;
 
 const selectedYear = ref(2015);
 const availableYears = ref([2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);
