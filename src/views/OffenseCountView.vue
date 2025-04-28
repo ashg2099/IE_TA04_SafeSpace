@@ -1,31 +1,13 @@
 <template>
-  <div class="d-flex justify-content-between align-items-end mb-2">
-    <h2>Melbourne Offences Counts
-    </h2>
-    <ScrollDown targetId="end" text="See more" buttonClass="btn-dark" iconClass="bi bi-arrow-bar-down" />
-  </div>
+  <CrimeDashboard title="Melbourne Offences Counts" :dashboardUrl="offenceCountUrl">
+    <template #title-actions>
+      <ScrollDown targetId="end" text="See more" buttonClass="btn-dark" iconClass="bi bi-arrow-bar-down" />
+    </template>
 
-  <div class="row g-4">
-    <div class="col-lg-8">
-      <!-- Main map with shadow and rounded corners -->
-      <div class="card shadow border-0 overflow-hidden h-100">
-        <div class="card-body p-0 d-flex flex-column">
-          <EmbededFrame :url="offenceURL" class="flex-grow-1" />
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 d-flex flex-column gap-4">
-      <!-- Year selector in its own card -->
-
-      <div class="card shadow-sm">
-        <div class="card-header bg-light py-3">
-          <h5 class="mb-0">You Need To Be Aware</h5>
-        </div>
-        <div class="card-body p-0">
-          <!-- <MaporTextFrame :url="offenceURL" height="800px" /> -->
-        </div>
-      </div>
+    <template #sidebar-content>
+      <InforCard title="You Need To Be Aware">
+        <!-- Content here -->
+      </InforCard>
 
       <div class="card shadow-sm">
         <div class="card-header bg-light py-3">
@@ -43,23 +25,21 @@
         </div>
       </div>
 
-      <div class="card shadow-sm bg-light">
-        <div class="card-body">
-          <h5 class="mb-3">Safety Recommendations</h5>
-          <div class="d-flex align-items-center mb-2">
-            <span class="bg-success p-1 rounded-circle me-2">
-              <i class="bi bi-check text-white"></i>
-            </span>
-            <span>Plan your routes with safety in mind</span>
-          </div>
-          <div class="d-flex align-items-center">
-            <span class="bg-success p-1 rounded-circle me-2">
-              <i class="bi bi-check text-white"></i>
-            </span>
-            <span>Stay extra cautious in high-risk areas</span>
-          </div>
+      <InforCard>
+        <h5 class="mb-3">Safety Recommendations</h5>
+        <div class="d-flex align-items-center mb-2">
+          <span class="bg-success p-1 rounded-circle me-2">
+            <i class="bi bi-check text-white"></i>
+          </span>
+          <span>Plan your routes with safety in mind</span>
         </div>
-      </div>
+        <div class="d-flex align-items-center">
+          <span class="bg-success p-1 rounded-circle me-2">
+            <i class="bi bi-check text-white"></i>
+          </span>
+          <span>Stay extra cautious in high-risk areas</span>
+        </div>
+      </InforCard>
 
       <div class="card border-0 bg-warning shadow">
         <div class="card-body">
@@ -75,17 +55,16 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-
+    </template>
+  </CrimeDashboard>
 </template>
 
 <script setup lang="ts">
-import EmbededFrame from '../components/EmbededFrame.vue';
+import CrimeDashboard from '../components/CrimeDashboard.vue';
 import ScrollDown from '../components/ScrollDown.vue';
+import InforCard from '../components/InforCard.vue'
 
-const offenceURL = import.meta.env.VITE_TABLEAU_DASHBOARD_OFFENCES_COUNT;
+const offenceCountUrl = import.meta.env.VITE_TABLEAU_DASHBOARD_OFFENCES_COUNT;
 
 </script>
 
