@@ -1,17 +1,8 @@
 <template>
   <div class="d-flex justify-content-between align-items-end mb-2">
-    <h2>Melbourne Offences Count by Suburb - Year {{ selectedYear }}
-      <br>
-      <p class="h5">The Offences Count represents the number of recorded offences under offence
-        division “A
-        Crimes against the person”</p>
+    <h2>Melbourne Offences Counts
     </h2>
     <ScrollDown targetId="end" text="See more" buttonClass="btn-dark" iconClass="bi bi-arrow-bar-down" />
-    <!-- <div class="form-group p-2">
-      <select id="yearSelect" v-model="selectedYear" class="form-select">
-        <option v-for="year in availableYears" :key="year" :value="year">{{ year }}</option>
-      </select>
-    </div> -->
   </div>
 
   <div class="row g-4">
@@ -26,16 +17,6 @@
 
     <div class="col-lg-4 d-flex flex-column gap-4">
       <!-- Year selector in its own card -->
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div class="d-flex align-items-center justify-content-between">
-            <label for="yearSelect" class="form-label mb-0 fw-bold">Filter by Year:</label>
-            <select id="yearSelect" v-model="selectedYear" class="form-select ms-3" style="max-width: 120px;">
-              <option v-for="year in availableYears" :key="year" :value="year">{{ year }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
       <div class="card shadow-sm">
         <div class="card-header bg-light py-3">
@@ -101,14 +82,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import EmbededFrame from '../components/EmbededFrame.vue';
 import ScrollDown from '../components/ScrollDown.vue';
 
 const offenceURL = import.meta.env.VITE_TABLEAU_DASHBOARD_OFFENCES_COUNT;
 
-const selectedYear = ref(2015);
-const availableYears = ref([2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);
 </script>
 
 <style scoped></style>
