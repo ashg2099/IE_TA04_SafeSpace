@@ -9,21 +9,16 @@
         <!-- Content here -->
       </InforCard>
 
-      <div class="card shadow-sm">
-        <div class="card-header bg-light py-3">
-          <h5 class="mb-0">Offence Categories</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">Offence Division <strong>"A Crimes against the person"</strong> includes:</p>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item ps-0 border-0 py-2">• A20 Assault and related offences</li>
-            <li class="list-group-item ps-0 border-0 py-2">• A50 Robbery</li>
-            <li class="list-group-item ps-0 border-0 py-2">• A70 Stalking, harassment and threatening behaviour</li>
-            <li class="list-group-item ps-0 border-0 py-2">• A80 Dangerous and negligent acts endangering people</li>
-            <li class="list-group-item ps-0 border-0 py-2">• Other crimes against the person</li>
-          </ul>
-        </div>
-      </div>
+      <InforCard title="Offence Categories">
+        <p class="card-text">Offence Division <strong>"A Crimes against the person"</strong> includes:</p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item ps-0 border-0 py-2">• A20 Assault and related offences</li>
+          <li class="list-group-item ps-0 border-0 py-2">• A50 Robbery</li>
+          <li class="list-group-item ps-0 border-0 py-2">• A70 Stalking, harassment and threatening behaviour</li>
+          <li class="list-group-item ps-0 border-0 py-2">• A80 Dangerous and negligent acts endangering people</li>
+          <li class="list-group-item ps-0 border-0 py-2">• Other crimes against the person</li>
+        </ul>
+      </InforCard>
 
       <InforCard>
         <h5 class="mb-3">Safety Recommendations</h5>

@@ -1,20 +1,17 @@
 <template>
-  <div class="card shadow-sm rounded bg-light border-0 mb-4">
-    <div class="card-body">
-      <OffenseCountView />
+  <InforCard card-class="shadow-sm rounded bg-light border-0 mb-4">
+    <OffenseCountView />
+  </InforCard>
 
-    </div>
-  </div>
-  <div class="card shadow-sm rounded bg-light border-0 mb-4">
-    <div class="card-body">
-      <VictimCountsView />
-    </div>
-  </div>
+  <InforCard card-class="card shadow-sm rounded bg-light border-0 mb-4">
+    <VictimCountView />
+  </InforCard>
 </template>
 
 <script setup lang="ts">
 import OffenseCountView from '@/views/OffenseCountView.vue';
-import VictimCountsView from '@/views/VictimCountsView.vue';
+import VictimCountView from '@/views/VictimCountView.vue';
+import InforCard from '@/components/InforCard.vue';
 </script>
 
 
