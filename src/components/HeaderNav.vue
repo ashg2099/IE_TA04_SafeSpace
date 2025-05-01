@@ -19,11 +19,14 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav ms-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/real-crime-stat">Real crime stats</RouterLink>
+              <RouterLink class="nav-link" to="/explore-crime-stat">Explore Crime Statistics</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="#">Safety challenge</RouterLink>
+              <RouterLink class="nav-link" to="/check-nearby-status">Check Nearby Status</RouterLink>
             </li>
+            <!-- <li class="nav-item">
+              <RouterLink class="nav-link" to="#">Safety C hallenge</RouterLink>
+            </li> -->
           </ul>
         </div>
       </div>

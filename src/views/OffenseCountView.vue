@@ -6,7 +6,18 @@
 
     <template #sidebar-content>
       <InforCard title="You Need To Be Aware">
-        <!-- Content here -->
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item ps-0 border-0 py-2"><strong>Select Your Suburb:</strong> Locate the suburb where
+            you live or
+            frequently visit on the map. Understand the offences counts and the types of offences most common in that
+            area.
+          </li>
+          <li class="list-group-item ps-0 border-0 py-2"><strong> High-Offences-Count Areas:</strong> Pay attention to
+            suburbs
+            with
+            higher offences count, especially those with a higher incidence of violent and sexual offences. This
+            information can help you stay more vigilant in these areas.</li>
+        </ul>
       </InforCard>
 
       <InforCard title="Offence Categories">
@@ -44,7 +55,7 @@
             </div>
             <div>
               <h5 class="mb-1">Need help?</h5>
-              <strong class="fs-5">Call 1800 737 732</strong>
+              <a :href="emergencyLink"><strong class="fs-5">Call 1800 737 732</strong></a>
               <div id="end">for emergency assistance</div>
             </div>
           </div>
@@ -60,7 +71,7 @@ import ScrollDown from '../components/ScrollDown.vue';
 import InforCard from '../components/InforCard.vue'
 
 const offenceCountUrl = import.meta.env.VITE_TABLEAU_DASHBOARD_OFFENCES_COUNT;
-
+const emergencyLink = 'https://www.1800respect.org.au/'
 </script>
 
 <style scoped></style>

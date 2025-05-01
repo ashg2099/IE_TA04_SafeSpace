@@ -72,8 +72,8 @@ const featureCards = ref<FeatureCardType[]>([
     id: 1,
     imageUrl: datavis,
     title: 'Want to know what happened in Melbourne last few years?',
-    buttonText: 'See real crime stat',
-    routePath: '/real-crime-stat'
+    buttonText: 'Explore Crime statistics',
+    routePath: '/explore-crime-stat'
   },
   {
     id: 2,

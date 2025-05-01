@@ -10,14 +10,29 @@ const router = createRouter({
       component: FirstView,
     },
     {
-      path: '/real-crime-stat',
-      name: 'real-crime-stat',
+      path: '/explore-crime-stat',
+      name: 'explore-crime-stat',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/RealCrimeStat.vue'),
+      component: () => import('../views/ExploreCrimeStat.vue'),
+    },
+    {
+      path: '/check-nearby-status',
+      name: 'check-nearby-status',
+      component: () => import('../views/CheckNearbyStatusView.vue'),
     },
   ],
+
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise((resolve) => {
+      if (savedPosition) {
+        resolve(savedPosition)
+      } else {
+        resolve({ left: 0, top: 0 })
+      }
+    })
+  },
 })
 
 export default router

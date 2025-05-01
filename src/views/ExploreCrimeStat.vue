@@ -1,9 +1,9 @@
 <template>
-  <InforCard card-class="shadow-sm rounded bg-light border-0 mb-4">
+  <InforCard card-class="shadow-sm rounde border-0 mb-4">
     <OffenseCountView />
   </InforCard>
 
-  <InforCard card-class="card shadow-sm rounded bg-light border-0 mb-4">
+  <InforCard card-class="card shadow-sm rounded border-0 mb-4">
     <VictimCountView />
   </InforCard>
 </template>

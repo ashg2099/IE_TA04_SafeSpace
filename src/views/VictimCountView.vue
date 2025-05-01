@@ -2,7 +2,7 @@
   <CrimeDashboard title="Australia Victim Counts" :dashboardUrl="victimCountUrl">
     <template #sidebar-content>
       <InforCard title="You Need To Be Aware">
-        <!-- Content here -->
+        <p>Girls! Whenever possible, travel with friends or family as you're vulnerable to fall victim.</p>
       </InforCard>
 
       <AlertCard type="warning" icon="info-circle-fill">
