@@ -9,7 +9,7 @@ class HomePage {
     private readonly crimeStatBtnSelector = '#additional-content > div:nth-child(1) > div > div > div.mt-4 > button';
     private readonly welcomeHeadingSelector = '#app > main > main > div.p-4.p-md-5.mb-4.rounded.text-body-emphasis.bg-warning.text-end > div > div:nth-child(2) > h1';
     private readonly welcomeParagraphSelector = '#app > main > main > div.p-4.p-md-5.mb-4.rounded.text-body-emphasis.bg-warning.text-end > div > div:nth-child(2) > p';
-    private readonly crimeStatsPageSelector = '#app > main > div:nth-child(1) > div > div.d-flex.justify-content-between.align-items-end.mb-2 > h2'
+    private readonly crimeStatsPageSelector = '#app > main > div:nth-child(1) > div > div > div.d-flex.justify-content-between.align-items-start.mb-2 > h2'
    
     // === Elements ===
     private get logo() {
@@ -34,7 +34,7 @@ class HomePage {
 
     // === Actions ===
     async open(): Promise<void> {
-        await browser.url('http://54.79.69.184/');
+        await browser.url('/');
     }
 
     async isLogoVisible(): Promise<void> {
