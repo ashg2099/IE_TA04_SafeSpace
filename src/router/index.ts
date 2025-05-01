@@ -18,9 +18,9 @@ const router = createRouter({
       component: () => import('../views/ExploreCrimeStat.vue'),
     },
     {
-      path: '/check-nearby-status',
-      name: 'check-nearby-status',
-      component: () => import('../views/CheckNearbyStatusView.vue'),
+      path: '/check-nearby-community',
+      name: 'check-nearby-community',
+      component: () => import('../views/CheckNearbyCommunityView.vue'),
     },
   ],
 

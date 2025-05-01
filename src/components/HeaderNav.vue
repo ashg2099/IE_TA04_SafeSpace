@@ -22,7 +22,7 @@
               <RouterLink class="nav-link" to="/explore-crime-stat">Explore Crime Statistics</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="nav-link" to="/check-nearby-status">Check Nearby Status</RouterLink>
+              <RouterLink class="nav-link" to="/check-nearby-community">Check Nearby Community</RouterLink>
             </li>
             <!-- <li class="nav-item">
               <RouterLink class="nav-link" to="#">Safety C hallenge</RouterLink>
