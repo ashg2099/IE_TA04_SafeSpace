@@ -9,7 +9,7 @@ Scenario: Verify SafeSpace logo is visible
 Scenario: Click discover button to scroll to crime statistics section
   Given I open the home page
   When I click the "Discover more statistics" button
-  Then I should see the "See real crime stat" section
+  Then I should see the "Explore Crime statistics" section
 
 @welcometext
 Scenario: Verify welcome section content
@@ -20,5 +20,5 @@ Scenario: Verify welcome section content
 @crimestatpage
 Scenario: Click real crime stats button to navigate to crime statistics page
   Given I open the home page
-  When I click the "Real crime stats" button
+  When I click the "Explore Crime statistics" button
   Then I should see the statistics page
