@@ -1,14 +1,10 @@
-from flask import Flask, jsonify, Response,request
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from visualisations import generate_aggregated_map, get_insights_text
-from visualisations import generate_trend_chart, get_trend_insights_text
-from visualisations import fetch_trend_data, create_summary_table, create_plotly_table
-from datetime import datetime
 
 app = Flask(__name__)
 
-# Configure the PostgreSQL connection
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:MonAsh_201199@safespace-db.ch8icuqwqyt9.ap-southeast-2.rds.amazonaws.com:5432/SafeSpaceDB'
+# Configure the PostgreSQL connection (update credentials as needed)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:MonAsh%40201199@localhost:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
@@ -16,8 +12,8 @@ db = SQLAlchemy(app)
 
 # Define the model for the crime statistics data
 class CrimeStatYearly(db.Model):
-    __tablename__ = 'melb_crime_stat_yearly'
-    __table_args__ = {'schema': 'safespace_ta04_schema'}
+    _tablename_ = 'melb_crime_stat_yearly'
+    _table_args_ = {'schema': 'safespace_schema'}
     
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
@@ -50,8 +46,8 @@ class CrimeStatYearly(db.Model):
         
 # Define the model for your victims data
 class VictimsByGenderYearly(db.Model):
-    __tablename__ = 'aus_victims_by_gender_yearly'
-    __table_args__ = {'schema': 'safespace_ta04_schema'}
+    _tablename_ = 'aus_victims_by_gender_yearly'
+    _table_args_ = {'schema': 'safespace_schema'}
     
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
@@ -72,57 +68,95 @@ class VictimsByGenderYearly(db.Model):
             'total_victims': self.total_victims
         }
 
-# Home route
-@app.route('/')
-def home():
-    return jsonify({"message": "Welcome to the SafeSpace API"})
+class StreetLightingData(db.Model):
+    _tablename_ = 'street_lighting_data'
+    _table_args_ = {'schema': 'safespace_schema'}
 
-# Endpoint to retrieve raw crime statistics data
+    id = db.Column(db.Integer, primary_key=True)
+    latitude = db.Column(db.Numeric(12, 9), nullable=False)
+    longitude = db.Column(db.Numeric(12, 9), nullable=False)
+    ext_id = db.Column(db.Integer)
+    emitted_lux_level = db.Column(db.Numeric(10, 3))
+    postcode = db.Column(db.String(10))
+    locality = db.Column(db.Text)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'latitude': float(self.latitude),
+            'longitude': float(self.longitude),
+            'ext_id': self.ext_id,
+            'emitted_lux_level': float(self.emitted_lux_level) if self.emitted_lux_level is not None else None,
+            'postcode': self.postcode,
+            'locality': self.locality
+        }
+
+class PedestrianCountByPeriod(db.Model):
+    _tablename_ = 'pedestrian_count_by_period'
+    _table_args_ = {'schema': 'safespace_schema'}
+
+    id = db.Column(db.Integer, primary_key=True)
+    location_id = db.Column(db.Integer, nullable=False)
+    sensing_date = db.Column(db.Date, nullable=False)
+    period_of_time = db.Column(db.Text, nullable=False)
+    total_pedestrian_count = db.Column(db.Integer)
+    hours_covered = db.Column(db.Integer)
+    avg_hourly_pedestrian_count = db.Column(db.Numeric(10, 4))
+    sensor_description = db.Column(db.Text)
+    sensor_name = db.Column(db.Text)
+    latitude = db.Column(db.Numeric(12, 9))
+    longitude = db.Column(db.Numeric(12, 9))
+    postcode = db.Column(db.String(10))
+    locality = db.Column(db.Text)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'location_id': self.location_id,
+            'sensing_date': self.sensing_date.strftime('%Y-%m-%d') if self.sensing_date else None,
+            'period_of_time': self.period_of_time,
+            'total_pedestrian_count': self.total_pedestrian_count,
+            'hours_covered': self.hours_covered,
+            'avg_hourly_pedestrian_count': float(self.avg_hourly_pedestrian_count) if self.avg_hourly_pedestrian_count else None,
+            'sensor_description': self.sensor_description,
+            'sensor_name': self.sensor_name,
+            'latitude': float(self.latitude) if self.latitude else None,
+            'longitude': float(self.longitude) if self.longitude else None,
+            'postcode': self.postcode,
+            'locality': self.locality
+        }
+       
+@app.route('/ping')
+def ping():
+    return "Pong!"
+ 
+# Fetch Crime Stats
 @app.route('/api/crime', methods=['GET'])
 def get_crime_stats():
     records = CrimeStatYearly.query.all()
     data = [record.to_dict() for record in records]
     return jsonify(data)
 
-# Endpoint to serve the aggregated crime map visualization
-@app.route('/api/aggregated_map', methods=['GET'])
-def aggregated_map():
-    selected_year = request.args.get('year', default=2015, type=int)
-    map_object = generate_aggregated_map(db, CrimeStatYearly, year=selected_year)
-    html_str = map_object.get_root().render()
-    return Response(html_str, mimetype='text/html')
+# Fetch Victims Data
+@app.route('/api/victims', methods=['GET'])
+def get_victims_data():
+    records = VictimsByGenderYearly.query.all()
+    data = [record.to_dict() for record in records]
+    return jsonify(data)
 
-# Endpoint to fetch dynamic textual insights for the selected year.
-@app.route('/api/insights', methods=['GET'])
-def insights():
-    selected_year = request.args.get('year', default=2015, type=int)
-    insight_html = get_insights_text(db, CrimeStatYearly, year=selected_year)
-    return Response(insight_html, mimetype='text/html')
+# Fetch Street Lighting Data
+@app.route('/api/street_lighting', methods=['GET'])
+def get_street_lighting_data():
+    records = StreetLightingData.query.all()
+    data = [record.to_dict() for record in records]
+    return jsonify(data)
 
-# Endpoint to get trend chart visualization
-@app.route('/api/trend_chart', methods=['GET'])
-def trend_chart():
-    start_year = request.args.get('start_year', default=2015, type=int)
-    end_year = request.args.get('end_year', default=2024, type=int)
-    html_str = generate_trend_chart(db, VictimsByGenderYearly, start_year, end_year)
-    return Response(html_str, mimetype='text/html')
-
-@app.route('/api/trend_insights', methods=['GET'])
-def trend_insights():
-    start_year = request.args.get('start_year', default=2015, type=int)
-    end_year = request.args.get('end_year', default=2024, type=int)
-    insight_html = get_trend_insights_text(db, VictimsByGenderYearly, start_year, end_year)
-    return Response(insight_html, mimetype='text/html')
-
-@app.route('/api/trend_table', methods=['GET'])
-def trend_table():
-    start_year = request.args.get('start_year', default=2015, type=int)
-    end_year = request.args.get('end_year', default=2024, type=int)
-    df_gender, df_overall = fetch_trend_data(db, VictimsByGenderYearly, start_year, end_year)
-    summary_df = create_summary_table(df_gender, df_overall)
-    table_fig = create_plotly_table(summary_df)
-    html_str = table_fig.to_html(full_html=False)
-    return Response(html_str, mimetype='text/html')
+# Fetch Pedestrian Count Data
+@app.route('/api/pedestrian_count', methods=['GET'])
+def get_pedestrian_count_data():
+    records = PedestrianCountByPeriod.query.all()
+    data = [record.to_dict() for record in records]
+    return jsonify(data)
 
 if __name__ == '__main__':
     with app.app_context():
