@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+// Import existing views
 import FirstView from '../views/FirstView.vue'
+import SafetyGame from '../components/SafetyGame.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,15 +15,19 @@ const router = createRouter({
     {
       path: '/explore-crime-stat',
       name: 'explore-crime-stat',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/ExploreCrimeStat.vue'),
     },
     {
       path: '/check-nearby-community',
       name: 'check-nearby-community',
       component: () => import('../views/CheckNearbyCommunityView.vue'),
+    },
+    
+    // New routes for the Gamified Safety Tips Epic
+    {
+      path: '/safety-game',
+      name: 'safety-game',
+      component: SafetyGame,
     },
   ],
 

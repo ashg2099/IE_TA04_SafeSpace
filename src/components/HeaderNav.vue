@@ -24,26 +24,15 @@
             <li class="nav-item">
               <RouterLink class="nav-link" to="/check-nearby-community">Check Nearby Community</RouterLink>
             </li>
-            <!-- <li class="nav-item">
-              <RouterLink class="nav-link" to="#">Safety C hallenge</RouterLink>
-            </li> -->
+            <!-- Add new link for the safety game -->
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/safety-game">Safety Challenge</RouterLink>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
-
   <!-- Add spacing for the fixed navigation bar to prevent content from being covered -->
   <div style="padding-top: 80px;"></div>
 </template>
-
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-
-</script>
-
-<style scoped>
-.navbar {
-  height: 95px;
-}
-</style>
