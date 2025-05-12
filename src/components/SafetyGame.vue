@@ -6,16 +6,22 @@
     <!-- Title Bar -->
     <div class="title-bar">
       <div class="window-buttons">
-        <span class="button close" @click="closeWindow"></span>
-        <span class="button maximize" @click="maximizeWindow"></span>
-        <span class="button minimize" @click="minimizeWindow"></span>
+        <span class="window-button close" @click="closeWindow">
+          <i class="fas fa-times"></i>
+        </span>
+        <span class="window-button maximize" @click="maximizeWindow">
+          <i class="fas fa-square"></i>
+        </span>
+        <span class="window-button minimize" @click="minimizeWindow">
+          <i class="fas fa-minus"></i>
+        </span>
       </div>
       <h2 class="game-title">Safety Game</h2>
     </div>
 
     <!-- Chat Window -->
     <div class="chat-window">
-      <div class="chat-box">
+      <div class="chat-box" ref="chatBoxRef">
         <div
           v-for="(message, index) in messages"
           :key="index"
@@ -28,42 +34,69 @@
 
     <!-- Input Box -->
     <div class="input-box">
+      <!-- Step 1: Scenario Selection -->
       <div v-if="currentStep === 1" class="button-container">
         <button
           class="answer-button"
-          @click="answerQuestion('street-harassment')"
+          @click="startScenario('street-harassment')"
         >
-          Street Harassment
+          Walking Alone at Night
         </button>
         <button
           class="answer-button"
-          @click="answerQuestion('public-transport')"
+          @click="startScenario('public-transport')"
         >
-          Public Transport Harassment
+          Harassment on Public Transport
         </button>
         <button
           class="answer-button"
-          @click="answerQuestion('workplace')"
+          @click="startScenario('workplace')"
         >
           Workplace Harassment
         </button>
+        <button
+          class="answer-button"
+          @click="startScenario('online-harassment')"
+        >
+          Online Harassment
+        </button>
+        <button
+          class="answer-button"
+          @click="startScenario('park-safety')"
+        >
+          Park Safety
+        </button>
       </div>
-      <div v-if="currentStep > 1 && currentStep < 4">
-        <button @click="nextStep">Next</button>
+
+      <!-- Step 2: Quiz Question Options -->
+      <div v-if="currentStep === 2" class="button-container">
+        <button
+          class="answer-button"
+          v-for="opt in currentQuiz.questions[questionIndex].options"
+          :key="opt.value"
+          @click="selectAnswer(opt.value)"
+        >
+          {{ opt.label }}
+        </button>
       </div>
-      <div v-if="currentStep === 4">
-        <button @click="resetGame">Re-select</button>
+
+      <!-- Step 3: Restart -->
+      <div v-if="currentStep === 3" class="button-container">
+        <button @click="resetGame">
+          Re-select Scenario
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const isMaximized = ref(false)
+const chatBoxRef = ref(null)
 
 function maximizeWindow() {
   isMaximized.value = true
@@ -77,79 +110,283 @@ function closeWindow() {
   router.push({ name: 'home' })
 }
 
-// Game logic
-const currentStep = ref(1)
-const messages = ref([{ text: 'Are you ready? Start the game!!!' }])
-
-const safetyTips = {
-  'street-harassment': [
-    '1. Walk in well-lit areas and avoid isolated streets.',
-    '2. Be assertive and let the person know their behavior is inappropriate.',
-    '3. Stay calm and try to find a safe place or group of people.',
-    '4. Use your phone to alert someone if you feel unsafe.',
-  ],
-  'public-transport': [
-    '1. Sit near the driver or conductor if possible.',
-    '2. Stay alert and avoid distractions, like your phone.',
-    '3. Don’t be afraid to make noise or draw attention if you feel threatened.',
-    '4. If you feel unsafe, get off at the next stop and find a safe place.',
-  ],
-  'workplace': [
-    '1. Speak up about inappropriate behavior to HR or your supervisor.',
-    '2. Document incidents of harassment or inappropriate behavior.',
-    '3. Seek support from colleagues or trusted individuals.',
-    '4. Know your rights in the workplace regarding harassment.',
-  ],
+// Quiz data: multiple questions per scenario
+const quizzes = {
+  'street-harassment': {
+    questions: [
+      {
+        question:
+          'Walking alone at night, you notice someone following you. What do you do first?',
+        options: [
+          { value: 'ignore', label: 'Ignore and keep walking' },
+          { value: 'call', label: 'Call for help immediately' },
+          { value: 'confront', label: 'Confront the person' }
+        ],
+        feedback: {
+          ignore: 'Ignoring may embolden them and increase risk.',
+          call: 'Correct! Calling for help can alert others and deter them.',
+          confront:
+            'Confrontation can be risky; it’s safer to call for help.'
+        }
+      },
+      {
+        question: 'What is a safe place you should head towards?',
+        options: [
+          { value: 'dark', label: 'Darker side street' },
+          { value: 'lit', label: 'Well-lit area with people' },
+          { value: 'home', label: 'Go home alone' }
+        ],
+        feedback: {
+          dark: 'Dark areas are unsafe; avoid them.',
+          lit: 'Correct! Staying in well-lit crowded areas is safer.',
+          home:
+            'Going home may leave you isolated; find a safe public spot.'
+        }
+      }
+    ],
+    tips: [
+      'Move to a well-lit, populated area.',
+      'Call emergency services or a friend.',
+      'Stay aware and keep your phone ready.'
+    ]
+  },
+  'public-transport': {
+    questions: [
+      {
+        question:
+          'On public transport, someone harasses you. What is your first action?',
+        options: [
+          { value: 'move', label: 'Move seats' },
+          { value: 'alert', label: 'Alert the driver/authority' },
+          { value: 'speak', label: 'Confront them directly' }
+        ],
+        feedback: {
+          move: 'Moving is passive and may not stop them.',
+          alert:
+            'Correct! Alerting authority ensures help arrives.',
+          speak: 'Direct confrontation can escalate the situation.'
+        }
+      },
+      {
+        question: 'Which seat location is safest?',
+        options: [
+          { value: 'rear', label: 'Back of the vehicle' },
+          { value: 'front', label: 'Near the driver' },
+          { value: 'middle', label: 'Middle section' }
+        ],
+        feedback: {
+          rear: 'Rear seats are away from help; avoid them.',
+          front:
+            'Correct! Near the driver you have access to assistance.',
+          middle: 'Middle can be safer but driver proximity is best.'
+        }
+      }
+    ],
+    tips: [
+      'Sit near the driver or exit doors.',
+      'Use emergency alarms or inform staff.',
+      'Keep phone out to call for help if needed.'
+    ]
+  },
+  'workplace': {
+    questions: [
+      {
+        question:
+          'A colleague makes unwelcome comments. What is your first step?',
+        options: [
+          { value: 'ignore', label: 'Ignore and stay quiet' },
+          { value: 'document', label: 'Document the incident' },
+          { value: 'public', label: 'Confront publicly' }
+        ],
+        feedback: {
+          ignore: 'Ignoring allows harassment to continue.',
+          document: 'Correct! Documenting helps build a report.',
+          public: 'Public confrontation can escalate conflict.'
+        }
+      },
+      {
+        question: 'Who should you report to?',
+        options: [
+          { value: 'friend', label: 'A coworker friend' },
+          { value: 'hr', label: 'Human Resources' },
+          { value: 'social', label: 'Company social group' }
+        ],
+        feedback: {
+          friend:
+            'Friends can support but not resolve officially.',
+          hr: 'Correct! HR handles formal complaints.',
+          social:
+            'Social groups are informal; use official channels.'
+        }
+      }
+    ],
+    tips: [
+      'Keep records of all incidents.',
+      'Report formally to HR.',
+      'Seek support from management or legal.'
+    ]
+  },
+  'online-harassment': {
+    questions: [
+      {
+        question:
+          'You receive harassing messages online. What do you do first?',
+        options: [
+          { value: 'block', label: 'Block the user' },
+          { value: 'report', label: 'Report to the platform' },
+          { value: 'reply', label: 'Reply and defend yourself' }
+        ],
+        feedback: {
+          block:
+            'Blocking stops direct harassment and is good first step.',
+          report: 'Correct! Reporting helps enforce community standards.',
+          reply: 'Replying can escalate the situation.'
+        }
+      },
+      {
+        question: 'What evidence should you keep?',
+        options: [
+          { value: 'screenshots', label: 'Take screenshots' },
+          { value: 'memory', label: 'Rely on memory' },
+          { value: 'none', label: 'No evidence needed' }
+        ],
+        feedback: {
+          screenshots: 'Correct! Screenshots provide verifiable proof.',
+          memory: 'Memory alone is not sufficient evidence.',
+          none: 'It’s important to keep records of harassment.'
+        }
+      }
+    ],
+    tips: [
+      'Block and mute harassers immediately.',
+      'Report content to moderators.',
+      'Save evidence like screenshots.'
+    ]
+  },
+  'park-safety': {
+    questions: [
+      {
+        question:
+          'In a secluded park at night, you feel unsafe. What’s your first move?',
+        options: [
+          { value: 'stay', label: 'Stay and wait' },
+          { value: 'leave', label: 'Leave immediately' },
+          { value: 'call', label: 'Call friend or authorities' }
+        ],
+        feedback: {
+          stay: 'Staying increases risk; better to leave.',
+          leave: 'Correct! Exiting reduces potential danger.',
+          call: 'Calling helps, but prioritize leaving the area.'
+        }
+      },
+      {
+        question: 'Where should you head?',
+        options: [
+          { value: 'road', label: 'Nearby road or busy area'},
+          { value: 'home', label: 'Your home alone' },
+          { value: 'bench', label: 'Park bench to wait' }
+        ],
+        feedback: {
+          road: 'Correct! Seek a well-lit, populated area.',
+          home: 'Home may not be safe; choose public spot.',
+          bench: 'Waiting in park is unsafe.'
+        }
+      }
+    ],
+    tips: [
+      'Leave the park immediately.',
+      'Call someone you trust or security services.',
+      'Stay in well-lit areas.'
+    ]
+  }
 }
 
-let selectedScenario = ''
+const currentStep = ref(1)
+const messages = ref([{ text: 'Are you ready? START GAME!!!' }])
+const currentQuiz = reactive({ questions: [], tips: [] })
+const questionIndex = ref(0)
 
-function answerQuestion(option) {
-  selectedScenario = option
-  messages.value.push({
-    text: `You choice is <strong>${option.replace('-', ' ')}</strong>`,
-  })
+// Auto-scroll chat on new messages
+watch(messages, async () => {
+  await nextTick()
+  const box = chatBoxRef.value
+  if (box) box.scrollTop = box.scrollHeight
+}, { deep: true, flush: 'post' })
+
+function startScenario(key) {
+  messages.value.push({ text: `Scenario: <strong>${ key.replace(/-/g, ' ') }</strong>` })
+  const quizData = quizzes[key]
+  currentQuiz.questions = quizData.questions
+  currentQuiz.tips = quizData.tips
+  questionIndex.value = 0
+  messages.value.push({ text: currentQuiz.questions[0].question })
   currentStep.value = 2
 }
 
-function nextStep() {
-  if (currentStep.value === 2) {
-    messages.value.push({
-      text: "Let's see what you should do in this situation.",
-    })
+function selectAnswer(choice) {
+  const q = currentQuiz.questions[questionIndex.value]
+  const label = q.options.find(o => o.value === choice).label
+  messages.value.push({ text: `Your answer: <strong>${ label }</strong>` })
+  messages.value.push({ text: q.feedback[choice] })
+  if (questionIndex.value < currentQuiz.questions.length - 1) {
+    questionIndex.value++
+    messages.value.push({ text: currentQuiz.questions[questionIndex.value].question })
+  } else {
+    const html = currentQuiz.tips.map(t => `<li>${ t }</li>`).join('')
+    messages.value.push({ text: `<strong>Safety Tips:</strong><ul>${ html }</ul>` })
     currentStep.value = 3
-  } else if (currentStep.value === 3) {
-    const tips = safetyTips[selectedScenario].join('<br><br>')
-    messages.value.push({
-      text: `<strong>Here are some safety tips:</strong><br><br>${tips}`,
-    })
-    currentStep.value = 4
   }
 }
 
 function resetGame() {
   currentStep.value = 1
-  messages.value = [{ text: 'Are you ready? Start the game!!!' }]
+  messages.value = [{ text: 'Ready for another scenario? 🚀' }]
 }
 </script>
 
 <style scoped>
-/* Fullscreen override */
+.window-buttons {
+  display: flex;
+  gap: 8px;
+}
+.window-buttons .window-button {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.window-buttons .close   { background-color: #FF4C4C; }
+.window-buttons .maximize{ background-color: #FFBD4A; }
+.window-buttons .minimize{ background-color: #4CAF50; }
+.window-buttons .window-button i {
+  font-size: 12px;
+  color: #333;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .game-container.fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+  position: fixed; 
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  margin: 0; padding: 0;
   z-index: 9999;
   background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-/* Make children fill width & remove corner radius in fullscreen */
+
 .game-container.fullscreen .title-bar,
 .game-container.fullscreen .chat-window,
 .game-container.fullscreen .input-box {
@@ -157,21 +394,12 @@ function resetGame() {
   max-width: none !important;
   border-radius: 0 !important;
 }
-/* Stretch chat-window to fill available height */
+
 .game-container.fullscreen .chat-window {
   flex: 1;
   min-height: 0;
 }
 
-/* Default layout */
-.game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-}
-
-/* Title Bar */
 .title-bar {
   display: flex;
   justify-content: space-between;
@@ -179,98 +407,99 @@ function resetGame() {
   width: 90%;
   max-width: 800px;
   padding: 15px;
-  background-color: #8E44AD;
+  background: linear-gradient(135deg, #8E44AD, #6C3483);
   border-radius: 8px 8px 0 0;
-  color: white;
-}
-.window-buttons {
-  display: flex;
-  gap: 10px;
-}
-.window-buttons .button {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: white;
-  cursor: pointer;
-}
-.window-buttons .close   { background-color: #FF4C4C; }
-.window-buttons .maximize{ background-color: #FFBD4A; }
-.window-buttons .minimize{ background-color: #4CAF50; }
-.game-title {
-  font-size: 24px;
-  font-weight: bold;
-  flex-grow: 1;
-  text-align: center;
+  color: #FFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Chat Window */
+.game-title {
+  flex: 1;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .chat-window {
   width: 90%;
   max-width: 800px;
-  background: url('@/assets/background.jpg') no-repeat center center;
-  background-size: cover;
-  border: 2px solid #ffffff;
-  border-radius: 8px;
-  padding: 30px;
+  background: url('@/assets/background.jpg') no-repeat center/cover;
+  border: 2px solid #fff;
+  border-radius: 0 0 8px 8px;
   display: flex;
   flex-direction: column;
-  min-height: 400px;
-}
-.chat-box {
-  flex-grow: 1;
+  padding: 20px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  height: 500px;
   overflow-y: auto;
 }
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+}
+
 .message {
-  display: block;            
-  width: fit-content;        
-  max-width: 70%;            
-  margin: 10px 0 10px auto; 
-  padding: 10px;
-  background-color: #4169E1;
-  color: white;
-  border-radius: 15px;
-  text-align: center;
-  font-weight: bold;
+  display: block;
+  width: fit-content;
+  max-width: 70%;
+  margin: 12px 0 12px auto;
+  padding: 12px 16px;
+  background: #3498DB;
+  color: #FFF;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  text-align: left;
   word-wrap: break-word;
 }
 
-/* Input Box */
+.message ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.message li {
+  margin-bottom: 6px;
+}
+
 .input-box {
+  width: 90%;
+  max-width: 800px;
   display: flex;
   justify-content: center;
   padding: 15px;
-  background-color: #8E44AD;
+  background: linear-gradient(135deg, #6C3483, #8E44AD);
   border-radius: 0 0 8px 8px;
-  width: 90%;
-  max-width: 800px;
 }
+
 .button-container {
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  gap: 12px;
   width: 100%;
 }
 
-/* Buttons */
 .answer-button,
 button {
   flex: 1;
-  padding: 15px;
-  background-color: #198bc4;
-  color: white;
+  padding: 12px;
+  background: #1ABC9C;
+  color: #FFF;
   border: none;
-  border-radius: 25px;
-  font-weight: bold;
+  border-radius: 20px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s;
 }
+
 .answer-button:hover,
 button:hover {
-  background-color: #2980b9;
+  background: #16A085;
 }
+
 button:disabled {
-  background-color: #ddd;
+  background: #BDC3C7;
   cursor: not-allowed;
 }
 </style>
