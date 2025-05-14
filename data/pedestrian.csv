@@ -307,10 +307,10 @@ location_id,period_of_time,total_pedestrian_count,hours_covered,days_covered,sen
 132,2. Morning (6am-12pm),362668,2182,364,I-Hub Corner of King Street and Latrobe Street (317-335 King),King335_T,-37.81267639,144.95386444,Melbourne,3000
 132,3. Afternoon (12pm-6pm),653467,2183,364,I-Hub Corner of King Street and Latrobe Street (317-335 King),King335_T,-37.81267639,144.95386444,Melbourne,3000
 132,4. Night (6pm-12am),462567,2182,365,I-Hub Corner of King Street and Latrobe Street (317-335 King),King335_T,-37.81267639,144.95386444,Melbourne,3000
-133,1. Late Night (12am-6am),132943,2160,361,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3000
-133,2. Morning (6am-12pm),1615130,2162,361,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3000
-133,3. Afternoon (12pm-6pm),2324684,2168,362,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3000
-133,4. Night (6pm-12am),1424256,2168,362,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3000
+133,1. Late Night (12am-6am),132943,2160,361,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3008
+133,2. Morning (6am-12pm),1615130,2162,361,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3008
+133,3. Afternoon (12pm-6pm),2324684,2168,362,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3008
+133,4. Night (6pm-12am),1424256,2168,362,I-Hub Southern Cross Station - Lonsdale Street Entrance - South,Spen229_T,-37.81531435,144.95227769,Docklands,3008
 134,1. Late Night (12am-6am),178978,2171,365,I-Hub Southern Cross Station - Bourke Street Entrance - North,Spen201_T,-37.81694221,144.95303935,Docklands,3008
 134,2. Morning (6am-12pm),1143625,2160,360,I-Hub Southern Cross Station - Bourke Street Entrance - North,Spen201_T,-37.81694221,144.95303935,Docklands,3008
 134,3. Afternoon (12pm-6pm),1843173,2171,365,I-Hub Southern Cross Station - Bourke Street Entrance - North,Spen201_T,-37.81694221,144.95303935,Docklands,3008
