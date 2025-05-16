@@ -125,6 +125,50 @@ class PedestrianCountByPeriod(db.Model):
             'postcode': self.postcode,
             'locality': self.locality
         }
+        
+class PoliceStation(db.Model):
+    __tablename__ = 'police_stations'
+    __table_args__ = {'schema': 'safespace_schema'}
+
+    id = db.Column(db.Integer, primary_key=True)
+    facility_name = db.Column(db.Text, nullable=False)
+    suburb = db.Column(db.Text)
+    postcode = db.Column(db.String(10))
+    latitude = db.Column(db.Numeric(12, 9))
+    longitude = db.Column(db.Numeric(12, 9))
+    formatted_address = db.Column(db.Text)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'facility_name': self.facility_name,
+            'suburb': self.suburb,
+            'postcode': self.postcode,
+            'latitude': float(self.latitude) if self.latitude else None,
+            'longitude': float(self.longitude) if self.longitude else None,
+            'formatted_address': self.formatted_address
+        }
+        
+class SelfDefenseCenter(db.Model):
+    __tablename__ = 'self_defense_centers'
+    __table_args__ = {'schema': 'safespace_schema'}
+
+    id = db.Column(db.Integer, primary_key=True)
+    academy_name = db.Column(db.Text, nullable=False)
+    type = db.Column(db.Text, nullable=False)
+    address = db.Column(db.Text, nullable=False)
+    contact = db.Column(db.Text)
+    website = db.Column(db.Text)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'academy_name': self.academy_name,
+            'type': self.type,
+            'address': self.address,
+            'contact': self.contact,
+            'website': self.website
+        }
        
 @app.route('/ping')
 def ping():
@@ -158,7 +202,21 @@ def get_pedestrian_count_data():
     data = [record.to_dict() for record in records]
     return jsonify(data)
 
+# Fetch police station data
+@app.route('/api/police_stations', methods=['GET'])
+def get_police_stations():
+    records = PoliceStation.query.all()
+    data = [record.to_dict() for record in records]
+    return jsonify(data)
+
+# Fetch Self defense locations data
+@app.route('/api/self_defense_centers', methods=['GET'])
+def get_self_defense_centers():
+    records = SelfDefenseCenter.query.all()
+    data = [record.to_dict() for record in records]
+    return jsonify(data)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
