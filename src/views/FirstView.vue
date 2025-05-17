@@ -55,9 +55,10 @@
 import { ref } from 'vue'
 import HomeFeatureCard from '@/components/HomeFeatureCard.vue'
 import datavis from '@/assets/data-vis.svg'
-// import game from '@/assets/game.svg'
+import game from '@/assets/game.svg'
 import pedlight from '@/assets/pedlight.svg'
 import ScrollDown from '../components/ScrollDown.vue';
+import selfdefense from '@/assets/self-defense.svg';
 
 interface FeatureCardType {
   id: number;
@@ -79,11 +80,23 @@ const featureCards = ref<FeatureCardType[]>([
   {
     id: 2,
     imageUrl: pedlight,
-    // title: 'Want to know if you can survive under different scenarios. Learn best practices through play.',
     title: "Curious which areas around you are buzzing and well-lit? Let's find out!",
-    // buttonText: 'Try the safety challenge',
     buttonText: 'Check Nearby Community',
     routePath: '/check-nearby-community'
+  },
+  {
+    id: 3,
+    imageUrl: game,
+    title: 'Want to know if you can survive under different scenarios. Learn best practices through play.',
+    buttonText: 'Try the safety challenge',
+    routePath: '/check-nearby-community'
+  },
+  {
+    id: 4,
+    imageUrl: selfdefense,
+    title: "Want to feel safer and more confident in your surroundings? Discover self-denfese classes tailored to your personality",
+    buttonText: 'Find a self-defense class',
+    routePath: '/check-nearby-community' //need to change later
   }
 ])
 
