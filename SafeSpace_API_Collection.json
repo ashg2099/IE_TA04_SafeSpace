@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "365e3a6f-eb78-4866-a494-512562f471f4",
+		"name": "SafeSpace",
+		"description": "API collection for SafeSpace backend endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45047444",
+		"_collection_link": "https://ashwin-877075.postman.co/workspace/f98c2308-1e27-4e36-87c1-c93348ede2b2/collection/45047444-365e3a6f-eb78-4866-a494-512562f471f4?action=share&source=collection_link&creator=45047444"
+	},
+	"item": [
+		{
+			"name": "Get All Police Stations",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if status is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Check if response is JSON",
+							"pm.test(\"Response is in JSON format\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check if array is not empty",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"// Check if response time is less than 500ms",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Check if Content-Type is application/json",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/police_stations",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"police_stations"
+					]
+				},
+				"description": "This endpoint makes an HTTP GET request to retrieve a list of police stations.\n\n### Request\n\nThe request does not require any parameters.\n\n### Response\n\nThe response will have a status code of 200 and a content type of `application/json`. The body of the response will contain an array of objects, each representing a police station. Each object will have the following properties:\n\n- `facility_name`: The name of the police station facility\n    \n- `formatted_address`: The formatted address of the police station\n    \n- `id`: The unique identifier of the police station\n    \n- `latitude`: The latitude coordinate of the police station location\n    \n- `longitude`: The longitude coordinate of the police station location\n    \n- `postcode`: The postcode of the police station location\n    \n- `suburb`: The suburb of the police station location\n    \n\n#### Sample Response:\n\n``` json\n[\n    {\n        \"facility_name\": \"BRANXHOLME POLICE STATION\",\n        \"formatted_address\": \"87-89 MONROE STREET\",\n        \"id\": 1,\n        \"latitude\": -37.858419148,\n        \"longitude\": 141.798754529,\n        \"postcode\": \"3302\",\n        \"suburb\": \"Branxholme\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Self-Defense Centers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if status is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Check if response is JSON",
+							"pm.test(\"Response is in JSON format\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check if array is not empty",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"// Check if response time is less than 500ms",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Check if Content-Type is application/json",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/self_defense_centers",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"self_defense_centers"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "### Get Self Defense Centers\n\nThis endpoint makes an HTTP GET request to retrieve a list of self-defense centers.\n\n#### Request Body\n\nThis request does not require a request body.\n\n#### Response\n\n- Status: 200 OK\n    \n- Content-Type: application/json\n    \n\nThe response body will contain an array of objects, each representing a self-defense center. Each object includes the following properties:\n\n- `id` (number): The unique identifier of the center.\n    \n- `academy_name` (string): The name of the self-defense academy.\n    \n- `address` (string): The address of the center.\n    \n- `contact` (string): The contact information for the center.\n    \n- `type` (string): The type of the self-defense center.\n    \n- `website` (string): The website of the center.\n    \n\nExample Response:\n\n``` json\n[\n    {\n        \"academy_name\": \"Dynamite Muay Thai \",\n        \"address\": \"Level 1/388 Bourke St, Melbourne VIC 3000\",\n        \"contact\": \"0433 568 256\",\n        \"id\": 1,\n        \"type\": \"Muay Thai\",\n        \"website\": \"http://www.dynamitemuaythai.com/\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Street Lighting Locations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if status is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Check if response is JSON",
+							"pm.test(\"Response is in JSON format\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check if array is not empty",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"// Check if Content-Type is application/json",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/street_lighting",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"street_lighting"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "### Get Street Lighting Data\n\nThis endpoint retrieves street lighting data.\n\n#### Request Body\n\nThis request does not require a request body.\n\n#### Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample response body:\n\n``` json\n[\n    {\n        \"emitted_lux_level\": 18.28,\n        \"ext_id\": 106037,\n        \"id\": 1,\n        \"latitude\": -37.819103,\n        \"longitude\": 144.947174,\n        \"postcode\": \"3008\"\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pedestrian Count by Period",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if status is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Check if response is JSON",
+							"pm.test(\"Response is in JSON format\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check if array is not empty",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"// Check if response time is less than 500ms",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Check if Content-Type is application/json",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/pedestrian_count",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pedestrian_count"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "### Get Pedestrian Count by Period\n\nThis endpoint makes an HTTP GET request to retrieve pedestrian count data. The response is in JSON format and includes the following fields:\n\n- days_covered: The number of days covered by the data.\n    \n- hours_covered: The number of hours covered by the data.\n    \n- id: The unique identifier for the pedestrian count data.\n    \n- latitude: The latitude coordinate of the location.\n    \n- location_id: The unique identifier for the location.\n    \n- longitude: The longitude coordinate of the location.\n    \n- period_of_time: The time period for which the data is collected.\n    \n- postcode: The postal code of the location.\n    \n- sensor_description: Description of the pedestrian sensor.\n    \n- sensor_name: Name of the pedestrian sensor.\n    \n- suburb: The suburb where the pedestrian count is recorded.\n    \n- total_pedestrian_count: The total count of pedestrians recorded.\n    \n\nThis information provides a comprehensive overview of the pedestrian count data retrieved from the specified location.\n\nThis API endpoint makes an HTTP GET request to retrieve pedestrian count data.\n\n### Sample Response\n\n``` json\n[\n    {\n        \"days_covered\": 355.0,\n        \"hours_covered\": 2124,\n        \"id\": 1,\n        \"latitude\": -37.81349441,\n        \"location_id\": 1,\n        \"longitude\": 144.96515323,\n        \"period_of_time\": \"1. Late Night (12am-6am)\",\n        \"postcode\": \"3000\",\n        \"sensor_description\": \"Bourke Street Mall (North)\",\n        \"sensor_name\": \"Bou292_T\",\n        \"suburb\": \"Melbourne\",\n        \"total_pedestrian_count\": 85536\n    }\n]\n\n ```\n\nThis endpoint is used to retrieve pedestrian count data."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Melbourne Yearly Crime Statistics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if status is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Check if response is JSON",
+							"pm.test(\"Response is in JSON format\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check if array is not empty",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"// Check if response time is less than 500ms",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Check if Content-Type is application/json",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/crime",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"crime"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "# Retrieve Crime Data\n\nThis endpoint makes an HTTP GET request to retrieve crime data from the server.\n\n### Response\n\nThe response will be in JSON format with the following fields:\n\n- `id` (number): The unique identifier for the crime incident.\n    \n- `incidents_recorded` (number): The number of incidents recorded for the crime.\n    \n- `lat` (number): The latitude coordinate of the crime location.\n    \n- `local_government_area` (string): The local government area where the crime occurred.\n    \n- `lon` (number): The longitude coordinate of the crime location.\n    \n- `offence_count` (number): The count of the specific type of offence.\n    \n- `offence_division` (string): The division of the offence.\n    \n- `offence_subdivision` (string): The subdivision of the offence.\n    \n- `offence_subgroup` (string): The subgroup of the offence.\n    \n- `postcode` (string): The postcode of the crime location.\n    \n- `suburb_town_name` (string): The name of the suburb or town where the crime occurred.\n    \n- `year` (number): The year in which the crime occurred.\n    \n\nThis API endpoint allows users to retrieve crime data.\n\n## Request\n\n### HTTP Request\n\n`GET http://127.0.0.1:5000/api/crime`\n\n## Response\n\n- Status: 200\n    \n- Content-Type: application/json\n    \n\nExample Response Body:\n\n``` json\n[\n    {\n        \"id\": 1,\n        \"incidents_recorded\": 1.0,\n        \"lat\": null,\n        \"local_government_area\": \"Melbourne\",\n        \"lon\": null,\n        \"offence_count\": 1.0,\n        \"offence_division\": \"A Crimes against the person\",\n        \"offence_subdivision\": \"A20 Assault and related offences\",\n        \"offence_subgroup\": \"A232 Non-FV Common assault\",\n        \"postcode\": \"3000\",\n        \"suburb_town_name\": \"Carlton\",\n        \"year\": 2024\n    }\n]\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Victims Count by Gender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if status is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Check if response is JSON",
+							"pm.test(\"Response is in JSON format\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"// Check if array is not empty",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.be.above(0);",
+							"});",
+							"",
+							"// Check if response time is less than 500ms",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"// Check if Content-Type is application/json",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/victims",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"victims"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "# Victims API\n\nThis API endpoint retrieves information about victims of various offenses.\n\n## Request\n\n### Endpoint\n\n`GET /api/victims`\n\n### Response\n\n#### Status: 200 OK\n\n#### Content-Type: application/json\n\nThe response body contains an array of victim objects, each containing the following properties:\n\n- `id` (number): The unique identifier for the victim record.\n    \n- `offence_division` (string): The division of the offense.\n    \n- `offence_subdivision` (string): The subdivision of the offense.\n    \n- `sex` (string): The gender of the victim.\n    \n- `total_victims` (number): The total number of victims.\n    \n- `victims` (number): The specific number of victims.\n    \n- `year` (number): The year of the victim record.\n    \n\n### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n[\n    {\n        \"id\": 1,\n        \"offence_division\": \"A Crimes against the person\",\n        \"offence_subdivision\": \"A10 Homicide and related offences\",\n        \"sex\": \"Females\",\n        \"total_victims\": 226,\n        \"victims\": 76,\n        \"year\": 2024\n    }\n]\n\n ```"
+			},
+			"response": []
+		}
+	]
+}
