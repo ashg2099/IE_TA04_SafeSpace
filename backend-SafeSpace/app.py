@@ -12,8 +12,8 @@ db = SQLAlchemy(app)
 
 # Define the model for the crime statistics data
 class CrimeStatYearly(db.Model):
-    _tablename_ = 'melb_crime_stat_yearly'
-    _table_args_ = {'schema': 'safespace_schema'}
+    __tablename__ = 'melb_crime_stat_yearly'
+    __table_args__ = {'schema': 'safespace_schema'}
     
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
@@ -46,8 +46,8 @@ class CrimeStatYearly(db.Model):
         
 # Define the model for your victims data
 class VictimsByGenderYearly(db.Model):
-    _tablename_ = 'aus_victims_by_gender_yearly'
-    _table_args_ = {'schema': 'safespace_schema'}
+    __tablename__ = 'aus_victims_by_gender_yearly'
+    __table_args__ = {'schema': 'safespace_schema'}
     
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
@@ -69,8 +69,8 @@ class VictimsByGenderYearly(db.Model):
         }
 
 class StreetLightingData(db.Model):
-    _tablename_ = 'street_lighting_data'
-    _table_args_ = {'schema': 'safespace_schema'}
+    __tablename__ = 'street_lighting_data'
+    __table_args__ = {'schema': 'safespace_schema'}
 
     id = db.Column(db.Integer, primary_key=True)
     latitude = db.Column(db.Numeric(12, 9), nullable=False)
@@ -78,7 +78,6 @@ class StreetLightingData(db.Model):
     ext_id = db.Column(db.Integer)
     emitted_lux_level = db.Column(db.Numeric(10, 3))
     postcode = db.Column(db.String(10))
-    locality = db.Column(db.Text)
 
     def to_dict(self):
         return {
@@ -88,42 +87,39 @@ class StreetLightingData(db.Model):
             'ext_id': self.ext_id,
             'emitted_lux_level': float(self.emitted_lux_level) if self.emitted_lux_level is not None else None,
             'postcode': self.postcode,
-            'locality': self.locality
         }
 
 class PedestrianCountByPeriod(db.Model):
-    _tablename_ = 'pedestrian_count_by_period'
-    _table_args_ = {'schema': 'safespace_schema'}
+    __tablename__ = 'pedestrian_count_by_period'
+    __table_args__ = {'schema': 'safespace_schema'}
 
     id = db.Column(db.Integer, primary_key=True)
     location_id = db.Column(db.Integer, nullable=False)
-    sensing_date = db.Column(db.Date, nullable=False)
     period_of_time = db.Column(db.Text, nullable=False)
     total_pedestrian_count = db.Column(db.Integer)
     hours_covered = db.Column(db.Integer)
-    avg_hourly_pedestrian_count = db.Column(db.Numeric(10, 4))
+    days_covered = db.Column(db.Integer)
     sensor_description = db.Column(db.Text)
     sensor_name = db.Column(db.Text)
     latitude = db.Column(db.Numeric(12, 9))
     longitude = db.Column(db.Numeric(12, 9))
     postcode = db.Column(db.String(10))
-    locality = db.Column(db.Text)
+    suburb = db.Column(db.Text)
 
     def to_dict(self):
         return {
             'id': self.id,
             'location_id': self.location_id,
-            'sensing_date': self.sensing_date.strftime('%Y-%m-%d') if self.sensing_date else None,
             'period_of_time': self.period_of_time,
             'total_pedestrian_count': self.total_pedestrian_count,
             'hours_covered': self.hours_covered,
-            'avg_hourly_pedestrian_count': float(self.avg_hourly_pedestrian_count) if self.avg_hourly_pedestrian_count else None,
+            'days_covered': float(self.days_covered) if self.days_covered else None,
             'sensor_description': self.sensor_description,
             'sensor_name': self.sensor_name,
             'latitude': float(self.latitude) if self.latitude else None,
             'longitude': float(self.longitude) if self.longitude else None,
             'postcode': self.postcode,
-            'locality': self.locality
+            'suburb': self.suburb
         }
         
 class PoliceStation(db.Model):
