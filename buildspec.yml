@@ -10,9 +10,7 @@ phases:
   build:
     commands:
       - echo Running Postman collection with environment...
-      - newman run SafeSpace_API_Collection.json \
-          --environment SafeSpace_environment.json \
-          -r cli,html --reporter-html-export newman-report.html
+      - newman run SafeSpace_API_Collection.json --environment SafeSpace_environment.json -r cli,html --reporter-html-export newman-report.html
 
 artifacts:
   files:
