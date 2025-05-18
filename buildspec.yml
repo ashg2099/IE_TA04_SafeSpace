@@ -7,12 +7,13 @@ phases:
     commands:
       - echo Installing Newman...
       - npm install -g newman
-      - echo Installing HTML Reporter...
-      - npm install -g newman-reporter-html
+      - echo Installing Enhanced HTML Reporter...
+      - npm install -g newman-reporter-htmlextra
+
   build:
     commands:
-      - echo Running Postman collection with environment...
-      - newman run SafeSpace_API_Collection.json --environment SafeSpace_environment.json -r cli,html --reporter-html-export newman-report.html
+      - echo Running Postman collection with htmlextra reporter...
+      - newman run SafeSpace_API_Collection.json --environment SafeSpace_environment.json -r cli,htmlextra --reporter-htmlextra-title "SafeSpace API Suite" --reporter-htmlextra-browserTitle "SafeSpace Test Report" --reporter-htmlextra-export newman-report.html --reporter-htmlextra-showOnlyFails false
 
 artifacts:
   files:
