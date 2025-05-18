@@ -68,6 +68,7 @@ class VictimsByGenderYearly(db.Model):
             'total_victims': self.total_victims
         }
 
+# Define the model for the street lighting data
 class StreetLightingData(db.Model):
     __tablename__ = 'street_lighting_data'
     __table_args__ = {'schema': 'safespace_schema'}
@@ -89,6 +90,7 @@ class StreetLightingData(db.Model):
             'postcode': self.postcode,
         }
 
+# Define the model for the pedestrian count by period data
 class PedestrianCountByPeriod(db.Model):
     __tablename__ = 'pedestrian_count_by_period'
     __table_args__ = {'schema': 'safespace_schema'}
@@ -122,6 +124,7 @@ class PedestrianCountByPeriod(db.Model):
             'suburb': self.suburb
         }
         
+# Define the model for the police station location data
 class PoliceStation(db.Model):
     __tablename__ = 'police_stations'
     __table_args__ = {'schema': 'safespace_schema'}
@@ -144,7 +147,8 @@ class PoliceStation(db.Model):
             'longitude': float(self.longitude) if self.longitude else None,
             'formatted_address': self.formatted_address
         }
-        
+      
+# Define the model for the self defense centres data  
 class SelfDefenseCenter(db.Model):
     __tablename__ = 'self_defense_centers'
     __table_args__ = {'schema': 'safespace_schema'}
