@@ -67,15 +67,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/police_stations",
-					"protocol": "http",
+					"raw": "{{base_url}}/api/police_stations",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"police_stations"
@@ -128,15 +123,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/self_defense_centers",
-					"protocol": "http",
+					"raw": "{{base_url}}/api/self_defense_centers",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"self_defense_centers"
@@ -191,15 +181,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/street_lighting",
-					"protocol": "http",
+					"raw": "{{base_url}}/api/street_lighting",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"street_lighting"
@@ -259,15 +244,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/pedestrian_count",
-					"protocol": "http",
+					"raw": "{{base_url}}/api/pedestrian_count",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"pedestrian_count"
@@ -327,15 +307,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/crime",
-					"protocol": "http",
+					"raw": "{{base_url}}/api/crime",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"crime"
@@ -395,15 +370,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/victims",
-					"protocol": "http",
+					"raw": "{{base_url}}/api/victims",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{base_url}}"
 					],
-					"port": "5000",
 					"path": [
 						"api",
 						"victims"
