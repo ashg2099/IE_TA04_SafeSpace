@@ -2,8 +2,10 @@ import { $, $$, expect } from '@wdio/globals';
 import type { Browser } from 'webdriverio';
 declare const browser: Browser;
 
+// Page object model for crime statistics page 
 class CrimePage {
-    // === Locators ===
+
+    // CSS & XPath locators to test in the page
     private readonly offenseMapTitleSelector = '#app > main > div:nth-child(1) > div > div > div.d-flex.justify-content-between.align-items-start.mb-2 > h2';
     private readonly mapSelector = '#app > main > div:nth-child(1) > div > div > div.row.g-4 > div.col-lg-8';
     private readonly safetyTipTitleSelector = '#app > main > div:nth-child(1) > div > div > div.row.g-4 > div.col-lg-4.d-flex.flex-column.gap-4.gap-1 > div:nth-child(3) > div > h5';
@@ -15,8 +17,6 @@ class CrimePage {
     private readonly offenceCategoryItemsSelector1 = '#app > main > div:nth-child(1) > div > div > div.row.g-4 > div.col-lg-4.d-flex.flex-column.gap-4.gap-1 > div:nth-child(2) > div.card-body > ul > li:nth-child(1)';
     private readonly offenceCategoryItemsSelector2 = '#app > main > div:nth-child(1) > div > div > div.row.g-4 > div.col-lg-4.d-flex.flex-column.gap-4.gap-1 > div:nth-child(2) > div.card-body > ul > li:nth-child(2)';
 
-
-    // === Elements ===
     private get offenseMap() {
         return $(this.offenseMapTitleSelector);
     }
@@ -56,16 +56,20 @@ class CrimePage {
     private get offenceCategoryItem2() {
         return $$(this.offenceCategoryItemsSelector2);
     }
+    
+    // Function to verify if offense map is visible
     async isOffenseMapVisible(): Promise<void> {
         await this.offenseMap.waitForDisplayed({ timeout: 5000 });
         await expect(this.offenseMap).toBeDisplayed();
     }
 
+    // Function to verify if color overlay in map is visible
     async isColoroverlayMapVisible(): Promise<void> {
         await this.mapView.waitForDisplayed({ timeout: 5000 });
         await expect(this.mapView).toBeDisplayed();
     }
 
+    // Function to verify if safety recommendation section are displayed 
     async expectSectionVisible(title: string) {
         const tipElement = this.safetyRecommendationTip;
         await tipElement.waitForDisplayed({ timeout: 5000 });
@@ -73,6 +77,7 @@ class CrimePage {
         await expect(text).toContain(title);
     }
 
+    // Function to verify if safety recommendation tips are displayed 
     async expectSafetyTipVisible(expectedText: string) {
         let tipElement;
     
@@ -88,12 +93,15 @@ class CrimePage {
         const actualText = await tipElement.getText();
         await expect(actualText).toContain(expectedText);
     }
+
+    // Function to verify if see more button is present 
     async expectButtonVisible(label: string) {
         await this.seeMoreButton.waitForDisplayed({ timeout: 5000 });
         const text = await this.seeMoreButton.getText();
         await expect(text).toContain(label);
     }
 
+    // Function to verify if see more button is clickable 
     async expectSeeMoreButtonClickable() {
         await this.seeMoreButton.waitForClickable({ timeout: 5000 });
         const isEnabled = await this.seeMoreButton.isEnabled();
@@ -103,12 +111,14 @@ class CrimePage {
         await expect(text).toContain("Australia Victim Counts");
     }
 
+    // Function to verify if offense category section is present
     async expectOffenceCategorySectionVisible(expectedText: string) {
         await this.offenceCategoryHeading.waitForDisplayed({ timeout: 5000 });
         const text = await this.offenceCategoryHeading.getText();
         await expect(text).toContain(expectedText);
     }
     
+    // Function to verify the list of offense category items is visible
     async expectOffenceCategoryItemVisible(expectedItem: string) {
         const item1Text = await (await this.offenceCategoryItem1[0]).getText();
         const item2Text = await (await this.offenceCategoryItem2[0]).getText();
