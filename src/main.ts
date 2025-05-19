@@ -5,9 +5,14 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import axios from 'axios'
 
 import App from './App.vue'
 import router from './router'
+
+// ✅ 禁用缓存
+axios.defaults.headers.common['Cache-Control'] = 'no-cache'
+axios.defaults.headers.common['Pragma'] = 'no-cache'
 
 const app = createApp(App)
 
