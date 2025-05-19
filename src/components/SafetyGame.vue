@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="game-container"
-    :class="{ fullscreen: isMaximized }"
-  >
+  <div class="game-container" :class="{ fullscreen: isMaximized }">
     <!-- Title Bar -->
     <div class="title-bar">
       <div class="window-buttons">
@@ -22,11 +19,7 @@
     <!-- Chat Window -->
     <div class="chat-window">
       <div class="chat-box" ref="chatBoxRef">
-        <div
-          v-for="(message, index) in messages"
-          :key="index"
-          class="message"
-        >
+        <div v-for="(message, index) in messages" :key="index" class="message">
           <p v-html="message.text"></p>
         </div>
       </div>
@@ -36,46 +29,27 @@
     <div class="input-box">
       <!-- Step 1: Scenario Selection -->
       <div v-if="currentStep === 1" class="button-container">
-        <button
-          class="answer-button"
-          @click="startScenario('street-harassment')"
-        >
+        <button class="answer-button" @click="startScenario('street-harassment')">
           Walking Alone at Night
         </button>
-        <button
-          class="answer-button"
-          @click="startScenario('public-transport')"
-        >
+        <button class="answer-button" @click="startScenario('public-transport')">
           Harassment on Public Transport
         </button>
-        <button
-          class="answer-button"
-          @click="startScenario('workplace')"
-        >
+        <button class="answer-button" @click="startScenario('workplace')">
           Workplace Harassment
         </button>
-        <button
-          class="answer-button"
-          @click="startScenario('online-harassment')"
-        >
+        <button class="answer-button" @click="startScenario('online-harassment')">
           Online Harassment
         </button>
-        <button
-          class="answer-button"
-          @click="startScenario('park-safety')"
-        >
+        <button class="answer-button" @click="startScenario('park-safety')">
           Park Safety
         </button>
       </div>
 
       <!-- Step 2: Quiz Question Options -->
       <div v-if="currentStep === 2" class="button-container">
-        <button
-          class="answer-button"
-          v-for="opt in currentQuiz.questions[questionIndex].options"
-          :key="opt.value"
-          @click="selectAnswer(opt.value)"
-        >
+        <button class="answer-button" v-for="opt in currentQuiz.questions[questionIndex].options" :key="opt.value"
+          @click="selectAnswer(opt.value)">
           {{ opt.label }}
         </button>
       </div>
@@ -90,7 +64,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, reactive, watch, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -282,7 +256,7 @@ const quizzes = {
       {
         question: 'Where should you head?',
         options: [
-          { value: 'road', label: 'Nearby road or busy area'},
+          { value: 'road', label: 'Nearby road or busy area' },
           { value: 'home', label: 'Your home alone' },
           { value: 'bench', label: 'Park bench to wait' }
         ],
@@ -314,7 +288,7 @@ watch(messages, async () => {
 }, { deep: true, flush: 'post' })
 
 function startScenario(key) {
-  messages.value.push({ text: `Scenario: <strong>${ key.replace(/-/g, ' ') }</strong>` })
+  messages.value.push({ text: `Scenario: <strong>${key.replace(/-/g, ' ')}</strong>` })
   const quizData = quizzes[key]
   currentQuiz.questions = quizData.questions
   currentQuiz.tips = quizData.tips
@@ -326,14 +300,14 @@ function startScenario(key) {
 function selectAnswer(choice) {
   const q = currentQuiz.questions[questionIndex.value]
   const label = q.options.find(o => o.value === choice).label
-  messages.value.push({ text: `Your answer: <strong>${ label }</strong>` })
+  messages.value.push({ text: `Your answer: <strong>${label}</strong>` })
   messages.value.push({ text: q.feedback[choice] })
   if (questionIndex.value < currentQuiz.questions.length - 1) {
     questionIndex.value++
     messages.value.push({ text: currentQuiz.questions[questionIndex.value].question })
   } else {
-    const html = currentQuiz.tips.map(t => `<li>${ t }</li>`).join('')
-    messages.value.push({ text: `<strong>Safety Tips:</strong><ul>${ html }</ul>` })
+    const html = currentQuiz.tips.map(t => `<li>${t}</li>`).join('')
+    messages.value.push({ text: `<strong>Safety Tips:</strong><ul>${html}</ul>` })
     currentStep.value = 3
   }
 }
@@ -349,6 +323,7 @@ function resetGame() {
   display: flex;
   gap: 8px;
 }
+
 .window-buttons .window-button {
   width: 18px;
   height: 18px;
@@ -358,11 +333,21 @@ function resetGame() {
   border-radius: 50%;
   background-color: #fff;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
-.window-buttons .close   { background-color: #FF4C4C; }
-.window-buttons .maximize{ background-color: #FFBD4A; }
-.window-buttons .minimize{ background-color: #4CAF50; }
+
+.window-buttons .close {
+  background-color: #FF4C4C;
+}
+
+.window-buttons .maximize {
+  background-color: #FFBD4A;
+}
+
+.window-buttons .minimize {
+  background-color: #4CAF50;
+}
+
 .window-buttons .window-button i {
   font-size: 12px;
   color: #333;
@@ -376,10 +361,13 @@ function resetGame() {
 }
 
 .game-container.fullscreen {
-  position: fixed; 
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  margin: 0; padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
   z-index: 9999;
   background: white;
   display: flex;

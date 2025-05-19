@@ -57,7 +57,7 @@ import HomeFeatureCard from '@/components/HomeFeatureCard.vue'
 import datavis from '@/assets/data-vis.svg'
 import game from '@/assets/game.svg'
 import pedlight from '@/assets/pedlight.svg'
-import ScrollDown from '../components/ScrollDown.vue';
+import ScrollDown from '@/components/ScrollDown.vue';
 import selfdefense from '@/assets/self-defense.svg';
 
 interface FeatureCardType {
@@ -89,7 +89,7 @@ const featureCards = ref<FeatureCardType[]>([
     imageUrl: game,
     title: 'Want to know if you can survive under different scenarios. Learn best practices through play.',
     buttonText: 'Try the safety challenge',
-    routePath: '/check-nearby-community'
+    routePath: '/check-nearby-community' // need to change later
   },
   {
     id: 4,

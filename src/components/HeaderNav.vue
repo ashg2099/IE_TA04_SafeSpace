@@ -28,6 +28,10 @@
             <li class="nav-item">
               <RouterLink class="nav-link" to="/safety-game">Safety Challenge</RouterLink>
             </li>
+            <!-- Add new link for the self defense class -->
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/self-defense">Find a self-defense class</RouterLink>
+            </li>
           </ul>
         </div>
       </div>

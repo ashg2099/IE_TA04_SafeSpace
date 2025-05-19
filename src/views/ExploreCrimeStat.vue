@@ -1,11 +1,13 @@
 <template>
-  <InforCard card-class="shadow-sm rounde border-0 mb-4">
-    <OffenseCountView />
-  </InforCard>
+  <main>
+    <InforCard card-class="shadow-sm rounded border-0 mb-4">
+      <OffenseCountView />
+    </InforCard>
 
-  <InforCard card-class="card shadow-sm rounded border-0 mb-4">
-    <VictimCountView />
-  </InforCard>
+    <InforCard card-class="card shadow-sm rounded border-0">
+      <VictimCountView />
+    </InforCard>
+  </main>
 </template>
 
 <script setup lang="ts">

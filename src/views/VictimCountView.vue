@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import CrimeDashboard from '../components/CrimeDashboard.vue';
-import InforCard from '../components/InforCard.vue'
+import CrimeDashboard from '@/components/CrimeDashboard.vue';
+import InforCard from '@/components/InforCard.vue'
 import AlertCard from '@/components/AlertCard.vue';
 
 const victimCountUrl = import.meta.env.VITE_TABLEAU_DASHBOARD_VICTIM_BY_GENDER;
