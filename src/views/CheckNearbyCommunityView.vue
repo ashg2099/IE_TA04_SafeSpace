@@ -1,5 +1,5 @@
-```vue
 <template>
+  <div class="container">
     <h2 class="mb-4">Community Safety Map</h2>
 
     <div class="filter-container mb-3">
@@ -8,9 +8,9 @@
           <label>Select Suburb</label>
           <div class="multi-select-dropdown">
             <div class="select-header" @click="toggleDropdown('suburb', $event)">
-              <span v-if="selectedSuburbs.length === 0">(All)</span>
+              <span v-if="selectedSuburbs.length === 0">(all)</span>
               <span v-else-if="selectedSuburbs.length === 1">{{ selectedSuburbs[0] }}</span>
-              <span v-else>Selected {{ selectedSuburbs.length }} items</span>
+              <span v-else>Selected item {{ selectedSuburbs.length }} item</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div class="select-dropdown" v-show="dropdownVisible.suburb">
@@ -42,9 +42,9 @@
           <label>Select Postcode</label>
           <div class="multi-select-dropdown">
             <div class="select-header" @click="toggleDropdown('postcode', $event)">
-              <span v-if="selectedPostcodes.length === 0">(All)</span>
+              <span v-if="selectedPostcodes.length === 0">(all)</span>
               <span v-else-if="selectedPostcodes.length === 1">{{ selectedPostcodes[0] }}</span>
-              <span v-else>Selected {{ selectedPostcodes.length }} items</span>
+              <span v-else>Selected {{ selectedPostcodes.length }} Cancel</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div class="select-dropdown" v-show="dropdownVisible.postcode">
@@ -78,7 +78,7 @@
             <div class="select-header" @click="toggleDropdown('period', $event)">
               <span v-if="selectedPeriods.length === 0">(All)</span>
               <span v-else-if="selectedPeriods.length === 1">{{ selectedPeriods[0] }}</span>
-              <span v-else>Selected {{ selectedPeriods.length }} items</span>
+              <span v-else>Selected {{ selectedPeriods.length }} item</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div class="select-dropdown" v-show="dropdownVisible.period">
@@ -112,17 +112,20 @@
         <div class="selector-buttons">
           <button
             @click="selectDataType('pedestrian')"
-            :class="['data-type-btn', 'pedestrian', { active: selectedDataType === 'pedestrian' }]">
+            :class="['data-type-btn', 'pedestrian', { active: selectedDataType === 'pedestrian' }]"
+          >
             <i class="bi bi-people"></i> Pedestrian Count
           </button>
           <button
             @click="selectDataType('light')"
-            :class="['data-type-btn', 'lighting', { active: selectedDataType === 'light' }]">
+            :class="['data-type-btn', 'lighting', { active: selectedDataType === 'light' }]"
+          >
             <i class="bi bi-lightbulb"></i> Street Lighting
           </button>
           <button
             @click="selectDataType('police')"
-            :class="['data-type-btn', 'police', { active: selectedDataType === 'police' }]">
+            :class="['data-type-btn', 'police', { active: selectedDataType === 'police' }]"
+          >
             <i class="bi bi-shield"></i> Police Stations
           </button>
         </div>
@@ -135,7 +138,8 @@
 
         <div class="data-type-info" v-if="selectedDataType">
           <p v-if="selectedDataType === 'pedestrian'">
-            On average, <strong>{{ averagePedestrianCount }}</strong> pedestrians walk past selected areas daily
+            On average, <strong>{{ averagePedestrianCount }}</strong> pedestrians walk past selected
+            areas daily
           </p>
           <p v-else-if="selectedDataType === 'light'">
             Street lighting helps improve safety in urban areas
@@ -156,14 +160,13 @@
 
         <div v-if="isLoading" class="loading-overlay">
           <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">加载中...</span>
           </div>
         </div>
       </div>
     </InforCard>
-
+  </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch, reactive } from 'vue'
@@ -201,7 +204,7 @@ const periodOptions = ref([
   '1. Late Night (12am-6am)',
   '2. Morning (6am-12pm)',
   '3. Afternoon (12pm-6pm)',
-  '4. Evening (6pm-12am)',
+  '4. Night (6pm-12am)',
 ])
 
 const policeStations = ref([])
@@ -434,15 +437,15 @@ const addAllLayers = () => {
         ['linear'],
         ['get', 'emitted_lux_level'],
         0,
-        '#ffffd9', // Darkest
+        '#ffffd9', // darkest
         5,
-        '#fee08b', // Darker
+        '#fee08b', // darker
         10,
         '#fdae61', // medium
         15,
-        '#f46d43', // Brighter
+        '#f46d43', // lighter
         20,
-        '#d53e4f', // Brightest
+        '#d53e4f', // lightest
       ],
       'circle-radius': [
         'interpolate',
@@ -755,12 +758,22 @@ const convertToGeoJSON = (data, type, isCrime = false, simulateLocation = false)
       coordinates = [144.9631, -37.8136]
     }
 
+    // If it is street lighting data and there is only postcode but no suburb, then add suburb according to postcode
+    let properties = { ...item, dataType: type }
+
+    if (type === 'light' && item.postcode && !item.suburb) {
+      // Find the corresponding suburbs according to postcode
+      const matchingSuburbs = suburbPostcodeMapping
+        .filter((mapping) => mapping.postcode === item.postcode)
+        .map((mapping) => mapping.suburb)
+
+      // Use the first matching suburb or the default value
+      properties.suburb = matchingSuburbs.length > 0 ? matchingSuburbs[0] : 'Unknown'
+    }
+
     return {
       type: 'Feature',
-      properties: {
-        ...item,
-        dataType: type,
-      },
+      properties: properties,
       geometry: {
         type: 'Point',
         coordinates: coordinates,
@@ -824,7 +837,7 @@ const applySelection = (type) => {
   } else if (type === 'postcode') {
     selectedPostcodes.value = [...tempPostcodes.value]
 
-    // When selecting postcode, the corresponding suburb is automatically selected
+    
     const relatedSuburbs = new Set()
     selectedPostcodes.value.forEach((postcode) => {
       suburbPostcodeMapping
@@ -1000,6 +1013,8 @@ const applyFilters = () => {
         filterExpression.push(['in', ['get', 'postcode'], ['literal', selectedPostcodes.value]])
       }
 
+      // For light data, only postcode filtering is used, not suburb filtering.
+      // Other data are filtered using suburb
       if (
         selectedSuburbs.value.length > 0 &&
         !(isLightOrVictims && selectedSuburbs.value.length === suburbs.value.length)
@@ -1010,7 +1025,8 @@ const applyFilters = () => {
             ['get', 'suburb_town_name'],
             ['literal', selectedSuburbs.value],
           ])
-        } else {
+        } else if (source !== 'light') {
+          // Do not apply suburb filtering to the light
           filterExpression.push(['in', ['get', 'suburb'], ['literal', selectedSuburbs.value]])
         }
       }

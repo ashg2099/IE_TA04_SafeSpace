@@ -41,24 +41,24 @@
         <button class="answer-button" @click="startScenario('online-harassment')">
           Online Harassment
         </button>
-        <button class="answer-button" @click="startScenario('park-safety')">
-          Park Safety
-        </button>
+        <button class="answer-button" @click="startScenario('park-safety')">Park Safety</button>
       </div>
 
       <!-- Step 2: Quiz Question Options -->
       <div v-if="currentStep === 2" class="button-container">
-        <button class="answer-button" v-for="opt in currentQuiz.questions[questionIndex].options" :key="opt.value"
-          @click="selectAnswer(opt.value)">
+        <button
+          class="answer-button"
+          v-for="opt in currentQuiz.questions[questionIndex].options"
+          :key="opt.value"
+          @click="selectAnswer(opt.value)"
+        >
           {{ opt.label }}
         </button>
       </div>
 
       <!-- Step 3: Restart -->
       <div v-if="currentStep === 3" class="button-container">
-        <button @click="resetGame">
-          Re-select Scenario
-        </button>
+        <button @click="resetGame">Re-select Scenario</button>
       </div>
     </div>
   </div>
@@ -89,190 +89,178 @@ const quizzes = {
   'street-harassment': {
     questions: [
       {
-        question:
-          'Walking alone at night, you notice someone following you. What do you do first?',
+        question: 'Walking alone at night, you notice someone following you. What do you do first?',
         options: [
           { value: 'ignore', label: 'Ignore and keep walking' },
           { value: 'call', label: 'Call for help immediately' },
-          { value: 'confront', label: 'Confront the person' }
+          { value: 'confront', label: 'Confront the person' },
         ],
         feedback: {
           ignore: 'Ignoring may embolden them and increase risk.',
           call: 'Correct! Calling for help can alert others and deter them.',
-          confront:
-            'Confrontation can be risky; it’s safer to call for help.'
-        }
+          confront: 'Confrontation can be risky; it’s safer to call for help.',
+        },
       },
       {
         question: 'What is a safe place you should head towards?',
         options: [
           { value: 'dark', label: 'Darker side street' },
           { value: 'lit', label: 'Well-lit area with people' },
-          { value: 'home', label: 'Go home alone' }
+          { value: 'home', label: 'Go home alone' },
         ],
         feedback: {
           dark: 'Dark areas are unsafe; avoid them.',
           lit: 'Correct! Staying in well-lit crowded areas is safer.',
-          home:
-            'Going home may leave you isolated; find a safe public spot.'
-        }
-      }
+          home: 'Going home may leave you isolated; find a safe public spot.',
+        },
+      },
     ],
     tips: [
       'Move to a well-lit, populated area.',
       'Call emergency services or a friend.',
-      'Stay aware and keep your phone ready.'
-    ]
+      'Stay aware and keep your phone ready.',
+    ],
   },
   'public-transport': {
     questions: [
       {
-        question:
-          'On public transport, someone harasses you. What is your first action?',
+        question: 'On public transport, someone harasses you. What is your first action?',
         options: [
           { value: 'move', label: 'Move seats' },
           { value: 'alert', label: 'Alert the driver/authority' },
-          { value: 'speak', label: 'Confront them directly' }
+          { value: 'speak', label: 'Confront them directly' },
         ],
         feedback: {
           move: 'Moving is passive and may not stop them.',
-          alert:
-            'Correct! Alerting authority ensures help arrives.',
-          speak: 'Direct confrontation can escalate the situation.'
-        }
+          alert: 'Correct! Alerting authority ensures help arrives.',
+          speak: 'Direct confrontation can escalate the situation.',
+        },
       },
       {
         question: 'Which seat location is safest?',
         options: [
           { value: 'rear', label: 'Back of the vehicle' },
           { value: 'front', label: 'Near the driver' },
-          { value: 'middle', label: 'Middle section' }
+          { value: 'middle', label: 'Middle section' },
         ],
         feedback: {
           rear: 'Rear seats are away from help; avoid them.',
-          front:
-            'Correct! Near the driver you have access to assistance.',
-          middle: 'Middle can be safer but driver proximity is best.'
-        }
-      }
+          front: 'Correct! Near the driver you have access to assistance.',
+          middle: 'Middle can be safer but driver proximity is best.',
+        },
+      },
     ],
     tips: [
       'Sit near the driver or exit doors.',
       'Use emergency alarms or inform staff.',
-      'Keep phone out to call for help if needed.'
-    ]
+      'Keep phone out to call for help if needed.',
+    ],
   },
-  'workplace': {
+  workplace: {
     questions: [
       {
-        question:
-          'A colleague makes unwelcome comments. What is your first step?',
+        question: 'A colleague makes unwelcome comments. What is your first step?',
         options: [
           { value: 'ignore', label: 'Ignore and stay quiet' },
           { value: 'document', label: 'Document the incident' },
-          { value: 'public', label: 'Confront publicly' }
+          { value: 'public', label: 'Confront publicly' },
         ],
         feedback: {
           ignore: 'Ignoring allows harassment to continue.',
           document: 'Correct! Documenting helps build a report.',
-          public: 'Public confrontation can escalate conflict.'
-        }
+          public: 'Public confrontation can escalate conflict.',
+        },
       },
       {
         question: 'Who should you report to?',
         options: [
           { value: 'friend', label: 'A coworker friend' },
           { value: 'hr', label: 'Human Resources' },
-          { value: 'social', label: 'Company social group' }
+          { value: 'social', label: 'Company social group' },
         ],
         feedback: {
-          friend:
-            'Friends can support but not resolve officially.',
+          friend: 'Friends can support but not resolve officially.',
           hr: 'Correct! HR handles formal complaints.',
-          social:
-            'Social groups are informal; use official channels.'
-        }
-      }
+          social: 'Social groups are informal; use official channels.',
+        },
+      },
     ],
     tips: [
       'Keep records of all incidents.',
       'Report formally to HR.',
-      'Seek support from management or legal.'
-    ]
+      'Seek support from management or legal.',
+    ],
   },
   'online-harassment': {
     questions: [
       {
-        question:
-          'You receive harassing messages online. What do you do first?',
+        question: 'You receive harassing messages online. What do you do first?',
         options: [
           { value: 'block', label: 'Block the user' },
           { value: 'report', label: 'Report to the platform' },
-          { value: 'reply', label: 'Reply and defend yourself' }
+          { value: 'reply', label: 'Reply and defend yourself' },
         ],
         feedback: {
-          block:
-            'Blocking stops direct harassment and is good first step.',
+          block: 'Blocking stops direct harassment and is good first step.',
           report: 'Correct! Reporting helps enforce community standards.',
-          reply: 'Replying can escalate the situation.'
-        }
+          reply: 'Replying can escalate the situation.',
+        },
       },
       {
         question: 'What evidence should you keep?',
         options: [
           { value: 'screenshots', label: 'Take screenshots' },
           { value: 'memory', label: 'Rely on memory' },
-          { value: 'none', label: 'No evidence needed' }
+          { value: 'none', label: 'No evidence needed' },
         ],
         feedback: {
           screenshots: 'Correct! Screenshots provide verifiable proof.',
           memory: 'Memory alone is not sufficient evidence.',
-          none: 'It’s important to keep records of harassment.'
-        }
-      }
+          none: 'It’s important to keep records of harassment.',
+        },
+      },
     ],
     tips: [
       'Block and mute harassers immediately.',
       'Report content to moderators.',
-      'Save evidence like screenshots.'
-    ]
+      'Save evidence like screenshots.',
+    ],
   },
   'park-safety': {
     questions: [
       {
-        question:
-          'In a secluded park at night, you feel unsafe. What’s your first move?',
+        question: 'In a secluded park at night, you feel unsafe. What’s your first move?',
         options: [
           { value: 'stay', label: 'Stay and wait' },
           { value: 'leave', label: 'Leave immediately' },
-          { value: 'call', label: 'Call friend or authorities' }
+          { value: 'call', label: 'Call friend or authorities' },
         ],
         feedback: {
           stay: 'Staying increases risk; better to leave.',
           leave: 'Correct! Exiting reduces potential danger.',
-          call: 'Calling helps, but prioritize leaving the area.'
-        }
+          call: 'Calling helps, but prioritize leaving the area.',
+        },
       },
       {
         question: 'Where should you head?',
         options: [
           { value: 'road', label: 'Nearby road or busy area' },
           { value: 'home', label: 'Your home alone' },
-          { value: 'bench', label: 'Park bench to wait' }
+          { value: 'bench', label: 'Park bench to wait' },
         ],
         feedback: {
           road: 'Correct! Seek a well-lit, populated area.',
           home: 'Home may not be safe; choose public spot.',
-          bench: 'Waiting in park is unsafe.'
-        }
-      }
+          bench: 'Waiting in park is unsafe.',
+        },
+      },
     ],
     tips: [
       'Leave the park immediately.',
       'Call someone you trust or security services.',
-      'Stay in well-lit areas.'
-    ]
-  }
+      'Stay in well-lit areas.',
+    ],
+  },
 }
 
 const currentStep = ref(1)
@@ -281,11 +269,15 @@ const currentQuiz = reactive({ questions: [], tips: [] })
 const questionIndex = ref(0)
 
 // Auto-scroll chat on new messages
-watch(messages, async () => {
-  await nextTick()
-  const box = chatBoxRef.value
-  if (box) box.scrollTop = box.scrollHeight
-}, { deep: true, flush: 'post' })
+watch(
+  messages,
+  async () => {
+    await nextTick()
+    const box = chatBoxRef.value
+    if (box) box.scrollTop = box.scrollHeight
+  },
+  { deep: true, flush: 'post' }
+)
 
 function startScenario(key) {
   messages.value.push({ text: `Scenario: <strong>${key.replace(/-/g, ' ')}</strong>` })
@@ -299,14 +291,14 @@ function startScenario(key) {
 
 function selectAnswer(choice) {
   const q = currentQuiz.questions[questionIndex.value]
-  const label = q.options.find(o => o.value === choice).label
+  const label = q.options.find((o) => o.value === choice).label
   messages.value.push({ text: `Your answer: <strong>${label}</strong>` })
   messages.value.push({ text: q.feedback[choice] })
   if (questionIndex.value < currentQuiz.questions.length - 1) {
     questionIndex.value++
     messages.value.push({ text: currentQuiz.questions[questionIndex.value].question })
   } else {
-    const html = currentQuiz.tips.map(t => `<li>${t}</li>`).join('')
+    const html = currentQuiz.tips.map((t) => `<li>${t}</li>`).join('')
     messages.value.push({ text: `<strong>Safety Tips:</strong><ul>${html}</ul>` })
     currentStep.value = 3
   }
@@ -337,15 +329,15 @@ function resetGame() {
 }
 
 .window-buttons .close {
-  background-color: #FF4C4C;
+  background-color: #ff4c4c;
 }
 
 .window-buttons .maximize {
-  background-color: #FFBD4A;
+  background-color: #ffbd4a;
 }
 
 .window-buttons .minimize {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .window-buttons .window-button i {
@@ -395,9 +387,9 @@ function resetGame() {
   width: 90%;
   max-width: 800px;
   padding: 15px;
-  background: linear-gradient(135deg, #8E44AD, #6C3483);
+  background: linear-gradient(135deg, #8e44ad, #6c3483);
   border-radius: 8px 8px 0 0;
-  color: #FFF;
+  color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -433,8 +425,8 @@ function resetGame() {
   max-width: 70%;
   margin: 12px 0 12px auto;
   padding: 12px 16px;
-  background: #3498DB;
-  color: #FFF;
+  background: #3498db;
+  color: #fff;
   border-radius: 12px;
   font-weight: 600;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -457,7 +449,7 @@ function resetGame() {
   display: flex;
   justify-content: center;
   padding: 15px;
-  background: linear-gradient(135deg, #6C3483, #8E44AD);
+  background: linear-gradient(135deg, #6c3483, #8e44ad);
   border-radius: 0 0 8px 8px;
 }
 
@@ -471,8 +463,8 @@ function resetGame() {
 button {
   flex: 1;
   padding: 12px;
-  background: #1ABC9C;
-  color: #FFF;
+  background: #1abc9c;
+  color: #fff;
   border: none;
   border-radius: 20px;
   font-weight: 600;
@@ -483,11 +475,11 @@ button {
 
 .answer-button:hover,
 button:hover {
-  background: #16A085;
+  background: #16a085;
 }
 
 button:disabled {
-  background: #BDC3C7;
+  background: #bdc3c7;
   cursor: not-allowed;
 }
 </style>

@@ -89,14 +89,14 @@ const featureCards = ref<FeatureCardType[]>([
     imageUrl: game,
     title: 'Want to know if you can survive under different scenarios. Learn best practices through play.',
     buttonText: 'Try the safety challenge',
-    routePath: '/check-nearby-community' // need to change later
+    routePath: '/safety-game' // need to change later
   },
   {
     id: 4,
     imageUrl: selfdefense,
     title: "Want to feel safer and more confident in your surroundings? Discover self-denfese classes tailored to your personality",
     buttonText: 'Find a self-defense class',
-    routePath: '/check-nearby-community' //need to change later
+    routePath: '/self-defense' //need to change later
   }
 ])
 
