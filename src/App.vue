@@ -5,7 +5,7 @@ import HeaderNav from './components/HeaderNav.vue';
 
 <template>
   <HeaderNav />
-  <main>
+  <main class="pt-5">
     <RouterView />
   </main>
 </template>

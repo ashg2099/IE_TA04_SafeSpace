@@ -1,6 +1,5 @@
 ```vue
 <template>
-  <div class="container">
     <h2 class="mb-4">Community Safety Map</h2>
 
     <div class="filter-container mb-3">
@@ -162,7 +161,7 @@
         </div>
       </div>
     </InforCard>
-  </div>
+
 </template>
 
 

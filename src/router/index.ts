@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Import existing views
-import FirstView from '../views/FirstView.vue'
-import SafetyGame from '../components/SafetyGame.vue'
+import FirstView from '@/views/FirstView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,19 +14,24 @@ const router = createRouter({
     {
       path: '/explore-crime-stat',
       name: 'explore-crime-stat',
-      component: () => import('../views/ExploreCrimeStat.vue'),
+      component: () => import('@/views/ExploreCrimeStat.vue'),
     },
     {
       path: '/check-nearby-community',
       name: 'check-nearby-community',
-      component: () => import('../views/CheckNearbyCommunityView.vue'),
+      component: () => import('@/views/CheckNearbyCommunityView.vue'),
     },
-    
+
     // New routes for the Gamified Safety Tips Epic
     {
       path: '/safety-game',
       name: 'safety-game',
-      component: SafetyGame,
+      component: () => import('@/components/SafetyGame.vue'),
+    },
+    {
+      path: '/self-defense',
+      name: 'self-defense',
+      component: () => import('@/views/SelfDefenseView.vue'),
     },
   ],
 
