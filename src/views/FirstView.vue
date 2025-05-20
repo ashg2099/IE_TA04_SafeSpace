@@ -38,7 +38,7 @@
     </div>
 
     <div class="p-3 mb-4">
-      <h1 class="mb-4 display-5 fw-bold">What we can do for you?</h1>
+      <h1 class="mb-4 display-5 fw-bold">What can we do for you?</h1>
 
       <div class="row bg-light" id="additional-content">
         <HomeFeatureCard v-for="card in featureCards" :key="card.id" :image-url="card.imageUrl" :title="card.title"
@@ -94,7 +94,7 @@ const featureCards = ref<FeatureCardType[]>([
   {
     id: 4,
     imageUrl: selfdefense,
-    title: "Want to feel safer and more confident in your surroundings? Discover self-denfese classes tailored to your personality",
+    title: "Want to feel safer and more confident in your surroundings? Discover self-defense classes tailored to your personality",
     buttonText: 'Find a self-defense class',
     routePath: '/self-defense' //need to change later
   }

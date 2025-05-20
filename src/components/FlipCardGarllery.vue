@@ -24,7 +24,7 @@ interface Card {
 const cards: Card[] = [
   {
     frontText: 'Thoughtful,Introspective,Focused',
-    backText: 'You might enjoy Brazilian Jiu-Jitsu. It’s a thoughtful and technical martial art where strategy matters more than strength. Ideal for those who prefer focus, patience, and subtle precision.',
+    backText: 'You might enjoy Aikido. It’s a peaceful martial art that uses an opponent’s energy against them. Ideal for those who value mindfulness, control, and inner balance over aggression.',
     bg: blue,
   },
   {
@@ -39,7 +39,7 @@ const cards: Card[] = [
   },
   {
     frontText: 'Curious,Observant,Analytical',
-    backText: 'You could try Judo — a martial art where precision and problem-solving shine. Every grip and throw is a mental puzzle, perfect for minds that love to think in motion.',
+    backText: 'You might enjoy Brazilian Jiu-Jitsu. It’s a thoughtful and technical martial art where strategy matters more than strength. Perfect for those who prefer focus, patience, and subtle precision.',
     bg: green,
   }
 ]

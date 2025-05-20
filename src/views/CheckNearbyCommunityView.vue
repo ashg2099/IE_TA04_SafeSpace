@@ -10,7 +10,7 @@
             <div class="select-header" @click="toggleDropdown('suburb', $event)">
               <span v-if="selectedSuburbs.length === 0">(all)</span>
               <span v-else-if="selectedSuburbs.length === 1">{{ selectedSuburbs[0] }}</span>
-              <span v-else>Selected item {{ selectedSuburbs.length }} item</span>
+              <span v-else>Selected {{ selectedSuburbs.length }} item</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div class="select-dropdown" v-show="dropdownVisible.suburb">
@@ -44,7 +44,7 @@
             <div class="select-header" @click="toggleDropdown('postcode', $event)">
               <span v-if="selectedPostcodes.length === 0">(all)</span>
               <span v-else-if="selectedPostcodes.length === 1">{{ selectedPostcodes[0] }}</span>
-              <span v-else>Selected {{ selectedPostcodes.length }} Cancel</span>
+              <span v-else>Selected {{ selectedPostcodes.length }} item</span>
               <i class="bi bi-chevron-down"></i>
             </div>
             <div class="select-dropdown" v-show="dropdownVisible.postcode">
@@ -138,8 +138,7 @@
 
         <div class="data-type-info" v-if="selectedDataType">
           <p v-if="selectedDataType === 'pedestrian'">
-            On average, <strong>{{ averagePedestrianCount }}</strong> pedestrians walk past selected
-            areas daily
+            A total of <strong>{{ averagePedestrianCount }}</strong> pedestrians passed through the designated area.
           </p>
           <p v-else-if="selectedDataType === 'light'">
             Street lighting helps improve safety in urban areas
@@ -162,6 +161,52 @@
           <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">加载中...</span>
           </div>
+        </div>
+      </div>
+    </InforCard>
+  </div>
+    <div class="col-10 col-md-8 col-lg-6 mx-auto p-3">
+    <InforCard card-class="shadow-sm rounded border-0 mb-4" body-class="p-4"
+      header-class="bg-primary text-white text-center py-3 rounded-top">
+      <div class="safety-tips">
+        <div class="tip-item d-flex align-items-start mb-3">
+          <div class="tip-icon text-primary me-3">
+            <i class="bi bi-geo-alt fs-4"></i>
+          </div>
+          <div class="tip-content">
+            <h6 class="mb-1 fw-bold">Select area you plan to visit</h6>
+            <p class="mb-0 text-secondary">Plan your travel route in advance and study the situation of your destination
+            </p>
+          </div>
+        </div>
+
+        <div class="tip-item d-flex align-items-start mb-3">
+          <div class="tip-icon text-primary me-3">
+            <i class="bi bi-people fs-4"></i>
+          </div>
+          <div class="tip-content">
+            <h6 class="mb-1 fw-bold">Choose an area with a large flow of people</h6>
+            <p class="mb-0 text-secondary">Look for areas with more pedestrians. These areas are usually safer,
+              especially at night, as more people around can prevent criminal activities</p>
+          </div>
+        </div>
+
+        <div class="tip-item d-flex align-items-start mb-3">
+          <div class="tip-icon text-primary me-3">
+            <i class="bi bi-lightbulb fs-4"></i>
+          </div>
+          <div class="tip-content">
+            <h6 class="mb-1 fw-bold">Avoid areas with poor lighting.</h6>
+            <p class="mb-0 text-secondary">If you must pass through these areas, try to do so during daylight hours or
+              when accompanied by others.</p>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-2 border-top">
+          <p class="text-muted fst-italic text-center mb-0">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            <small>Historical data does not indicate future, Please stay alert at any time</small>
+          </p>
         </div>
       </div>
     </InforCard>
@@ -678,7 +723,6 @@ const generatePopupHTML = (type, props) => {
           <p>Location: ${properties.sensor_description || 'Unknown'}</p>
           <p>Suburb: ${properties.suburb || 'Unknown'}</p>
           <p>Postcode: ${properties.postcode || 'Unknown'}</p>
-          <p>Time Period: ${properties.period_of_time || 'All day'}</p>
           <p>Daily Count: ${properties.total_pedestrian_count || '0'}</p>
         </div>
       `
