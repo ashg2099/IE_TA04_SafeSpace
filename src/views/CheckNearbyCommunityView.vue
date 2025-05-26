@@ -72,6 +72,17 @@
           </div>
         </div>
 
+        <!-- Street lighting indicator -->
+        <div class="filter-group" v-show="selectedDataType === 'light'">
+          <label>Street Light Brightness Level</label>
+          <div class="metric-display">
+            <div class="metric-value">{{ averageStreetLightLevel.min }}</div>
+            <div class="metric-progress light-progress"></div>
+            <div class="metric-value">{{ averageStreetLightLevel.max }}</div>
+          </div>
+        </div>
+
+        <!-- Time period filter -->
         <div class="filter-group" v-show="selectedDataType === 'pedestrian'">
           <label>Select Period Of Time</label>
           <div class="multi-select-dropdown">
@@ -103,6 +114,15 @@
                 <button @click="cancelSelection('period')" class="cancel-btn">Cancel</button>
               </div>
             </div>
+          </div>
+        </div>
+        <!-- Pedestrian count indicator -->
+        <div class="filter-group" v-show="selectedDataType === 'pedestrian'">
+          <label>Daily Pedestrian Count</label>
+          <div class="metric-display">
+            <div class="metric-value">0</div>
+            <div class="metric-progress pedestrian-progress"></div>
+            <div class="metric-value">{{ averagePedestrianCount }}</div>
           </div>
         </div>
       </div>
@@ -138,7 +158,8 @@
 
         <div class="data-type-info" v-if="selectedDataType">
           <p v-if="selectedDataType === 'pedestrian'">
-            A total of <strong>{{ averagePedestrianCount }}</strong> pedestrians passed through the designated area.
+            A total of <strong>{{ averagePedestrianCount }}</strong> pedestrians passed through the
+            designated area.
           </p>
           <p v-else-if="selectedDataType === 'light'">
             Street lighting helps improve safety in urban areas
@@ -159,15 +180,18 @@
 
         <div v-if="isLoading" class="loading-overlay">
           <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">加载中...</span>
+            <span class="visually-hidden">Loading...</span>
           </div>
         </div>
       </div>
     </InforCard>
   </div>
-    <div class="col-10 col-md-8 col-lg-6 mx-auto p-3">
-    <InforCard card-class="shadow-sm rounded border-0 mb-4" body-class="p-4"
-      header-class="bg-primary text-white text-center py-3 rounded-top">
+  <div class="col-10 col-md-8 col-lg-6 mx-auto p-3">
+    <InforCard
+      card-class="shadow-sm rounded border-0 mb-4"
+      body-class="p-4"
+      header-class="bg-primary text-white text-center py-3 rounded-top"
+    >
       <div class="safety-tips">
         <div class="tip-item d-flex align-items-start mb-3">
           <div class="tip-icon text-primary me-3">
@@ -175,7 +199,8 @@
           </div>
           <div class="tip-content">
             <h6 class="mb-1 fw-bold">Select area you plan to visit</h6>
-            <p class="mb-0 text-secondary">Plan your travel route in advance and study the situation of your destination
+            <p class="mb-0 text-secondary">
+              Plan your travel route in advance and study the situation of your destination
             </p>
           </div>
         </div>
@@ -186,8 +211,10 @@
           </div>
           <div class="tip-content">
             <h6 class="mb-1 fw-bold">Choose an area with a large flow of people</h6>
-            <p class="mb-0 text-secondary">Look for areas with more pedestrians. These areas are usually safer,
-              especially at night, as more people around can prevent criminal activities</p>
+            <p class="mb-0 text-secondary">
+              Look for areas with more pedestrians. These areas are usually safer, especially at
+              night, as more people around can prevent criminal activities
+            </p>
           </div>
         </div>
 
@@ -197,8 +224,10 @@
           </div>
           <div class="tip-content">
             <h6 class="mb-1 fw-bold">Avoid areas with poor lighting.</h6>
-            <p class="mb-0 text-secondary">If you must pass through these areas, try to do so during daylight hours or
-              when accompanied by others.</p>
+            <p class="mb-0 text-secondary">
+              If you must pass through these areas, try to do so during daylight hours or when
+              accompanied by others.
+            </p>
           </div>
         </div>
 
@@ -238,7 +267,7 @@ const tempSelections = reactive({
   period: [],
 })
 
-// Drop-down box displays status
+// Dropdown visibility status
 const dropdownVisible = reactive({
   suburb: false,
   postcode: false,
@@ -296,6 +325,27 @@ const averagePedestrianCount = computed(() => {
   return Math.round(total / pedestrianCounts.value.length).toLocaleString()
 })
 
+const averageStreetLightLevel = computed(() => {
+  if (streetLights.value.length === 0) return { min: 0, max: 0, avg: 0 }
+
+  let total = 0
+  let min = Infinity
+  let max = -Infinity
+
+  streetLights.value.forEach((light) => {
+    const level = Number(light.emitted_lux_level) || 0
+    total += level
+    min = Math.min(min, level)
+    max = Math.max(max, level)
+  })
+
+  return {
+    min: min === Infinity ? 0 : Number(min.toFixed(2)),
+    max: max === -Infinity ? 0 : Number(max.toFixed(2)),
+    avg: Number((total / streetLights.value.length).toFixed(2)),
+  }
+})
+
 // API URL
 const API_BASE_URL = '/api'
 
@@ -318,14 +368,14 @@ const fetchData = async () => {
     crimeData.value = crimeRes.data
     victimsData.value = victimsRes.data
     streetLights.value = lightsRes.data
-    console.log('街道照明数据数量:', streetLights.value.length)
+    console.log('Street lighting data count:', streetLights.value.length)
     pedestrianCounts.value = pedestrianRes.data
     selfDefenseCenters.value = defenseRes.data
-    console.log('受害者数据数量:', victimsData.value.length)
+    console.log('Victim data count:', victimsData.value.length)
 
     return true
   } catch (error) {
-    console.error('获取数据失败:', error)
+    console.error('Failed to fetch data:', error)
     return false
   } finally {
     isLoading.value = false
@@ -335,7 +385,7 @@ const fetchData = async () => {
 const initMap = () => {
   mapboxgl.value = window.mapboxgl
   if (!mapboxgl.value) {
-    console.error('Mapbox GL JS 未加载')
+    console.error('Mapbox GL JS not loaded')
     return
   }
 
@@ -881,7 +931,6 @@ const applySelection = (type) => {
   } else if (type === 'postcode') {
     selectedPostcodes.value = [...tempPostcodes.value]
 
-    
     const relatedSuburbs = new Set()
     selectedPostcodes.value.forEach((postcode) => {
       suburbPostcodeMapping
@@ -942,12 +991,12 @@ onMounted(async () => {
     } else {
     }
   } catch (error) {
-    console.error('地图初始化错误:', error)
+    console.error('Map initialization error:', error)
   }
 
   document.addEventListener('click', (event) => {
     const isClickOnHeader = Array.from(document.querySelectorAll('.select-header')).some((header) =>
-      header.contains(event.target)
+      header.contains(event.target as Node)
     )
 
     if (!isClickOnHeader) {
@@ -955,7 +1004,7 @@ onMounted(async () => {
       const openDropdowns = document.querySelectorAll('.select-dropdown')
 
       for (const dropdown of openDropdowns) {
-        if (dropdown.contains(event.target)) {
+        if (dropdown.contains(event.target as Node)) {
           clickedOutside = false
           break
         }
@@ -999,7 +1048,7 @@ const getLayersBySource = (source) => {
 
 const selectDataType = (type) => {
   selectedDataType.value = type
-  console.log('切换到数据类型:', type)
+  console.log('Switched to data type:', type)
 
   if (type === 'light' || type === 'victims') {
     // Reset to Select All
@@ -1009,7 +1058,7 @@ const selectDataType = (type) => {
     tempSuburbs.value = [...suburbs.value]
     tempPostcodes.value = [...postcodes.value]
 
-    console.log('已重置筛选条件，以显示完整数据')
+    console.log('Reset filters to show complete data')
   }
 
   if (map.value && map.value.loaded()) {
@@ -1047,14 +1096,18 @@ const applyFilters = () => {
     // If both suburb and postcode are empty arrays, add a condition that never matches
     if (selectedSuburbs.value.length === 0 && selectedPostcodes.value.length === 0) {
       // Add a condition that cannot be met, so no data will be displayed
-      filterExpression.push(['==', ['get', 'id'], '不存在的ID'])
+      filterExpression.push(['==', ['get', 'id'], 'non_existent_ID'] as any)
     } else {
       // Otherwise use normal filtering logic
       if (
         selectedPostcodes.value.length > 0 &&
         !(isLightOrVictims && selectedPostcodes.value.length === postcodes.value.length)
       ) {
-        filterExpression.push(['in', ['get', 'postcode'], ['literal', selectedPostcodes.value]])
+        filterExpression.push([
+          'in',
+          ['get', 'postcode'],
+          ['literal', selectedPostcodes.value],
+        ] as any)
       }
 
       // For light data, only postcode filtering is used, not suburb filtering.
@@ -1068,10 +1121,14 @@ const applyFilters = () => {
             'in',
             ['get', 'suburb_town_name'],
             ['literal', selectedSuburbs.value],
-          ])
+          ] as any)
         } else if (source !== 'light') {
           // Do not apply suburb filtering to the light
-          filterExpression.push(['in', ['get', 'suburb'], ['literal', selectedSuburbs.value]])
+          filterExpression.push([
+            'in',
+            ['get', 'suburb'],
+            ['literal', selectedSuburbs.value],
+          ] as any)
         }
       }
     }
@@ -1080,9 +1137,13 @@ const applyFilters = () => {
     if (source === 'pedestrian') {
       if (selectedPeriods.value.length === 0) {
         // Add an impossible condition to hide all pedestrian data points
-        filterExpression.push(['==', ['get', 'period_of_time'], '不存在的时间段'])
+        filterExpression.push(['==', ['get', 'period_of_time'], 'non_existent_time_period'] as any)
       } else {
-        filterExpression.push(['in', ['get', 'period_of_time'], ['literal', selectedPeriods.value]])
+        filterExpression.push([
+          'in',
+          ['get', 'period_of_time'],
+          ['literal', selectedPeriods.value],
+        ] as any)
       }
     }
 
@@ -1198,11 +1259,13 @@ watch([selectedSuburbs, selectedPostcodes, selectedPeriods], () => {
 .filter-row {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .filter-group {
   flex: 1;
-  min-width: 0;
+  min-width: 200px;
 }
 
 .filter-group label {
@@ -1401,5 +1464,32 @@ watch([selectedSuburbs, selectedPostcodes, selectedPeriods], () => {
 .cancel-btn {
   background-color: #f8f9fa;
   border: 1px solid #ced4da;
+}
+
+.metric-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  height: 38px; /* Match the height with select-header */
+}
+
+.metric-value {
+  font-size: 12px;
+  min-width: 30px;
+}
+
+.metric-progress {
+  flex: 1;
+  height: 34px;
+  border: 1px solid #bfa5a5;
+}
+
+.pedestrian-progress {
+  background: linear-gradient(to right, #b8e994, #78e08f, #38ada9, #0a3d62, #0c2461);
+}
+
+.light-progress {
+  background: linear-gradient(to right, #ffffd9, #fee08b, #fdae61, #f46d43, #d53e4f);
 }
 </style>

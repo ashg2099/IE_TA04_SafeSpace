@@ -19,7 +19,12 @@
     <!-- Chat Window -->
     <div class="chat-window">
       <div class="chat-box" ref="chatBoxRef">
-        <div v-for="(message, index) in messages" :key="index" class="message">
+        <div
+          v-for="(message, index) in messages"
+          :key="index"
+          class="message"
+          :class="{ correct: message.text.includes('Correct!') }"
+        >
           <p v-html="message.text"></p>
         </div>
       </div>
@@ -459,6 +464,10 @@ function resetGame() {
   width: 100%;
 }
 
+.message.correct {
+  background: #ffd700;
+  color: #333;
+}
 .answer-button,
 button {
   flex: 1;
